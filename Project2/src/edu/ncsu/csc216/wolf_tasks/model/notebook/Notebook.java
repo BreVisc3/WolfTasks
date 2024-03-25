@@ -8,6 +8,11 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
 
+/**
+ * Notebook class manages TaskLists on a larger scale
+ * 
+ * @author Brendan_Viscount
+ */
 public class Notebook {
 
 	/** Name of the notebook */

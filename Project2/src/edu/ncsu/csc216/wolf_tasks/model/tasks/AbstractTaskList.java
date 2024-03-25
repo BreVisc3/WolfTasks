@@ -3,6 +3,11 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
 import edu.ncsu.csc216.wolf_tasks.model.util.SwapList;
 
+/**
+ * AbstractTaskList provides basic methods for functionality of a TaskList
+ * 
+ * @author Brendan_Viscount
+ */
 public abstract class AbstractTaskList {
 
 	/** Name of the task list */

@@ -1,5 +1,10 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
+/**
+ * TaskList is a collection class for general Tasks
+ * 
+ * @author Brendan_Viscount
+ */
 public class TaskList extends AbstractTaskList{
 
 	/**

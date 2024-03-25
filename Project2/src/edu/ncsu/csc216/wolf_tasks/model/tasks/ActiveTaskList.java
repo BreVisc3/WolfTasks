@@ -1,5 +1,10 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
+/**
+ * Task list class for active tasks
+ * 
+ * @author Brendan_Viscount
+ */
 public class ActiveTaskList extends AbstractTaskList {
 	
 	public static final String ACTIVE_TASKS_NAME = "Active Tasks";

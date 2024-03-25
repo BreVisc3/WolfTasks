@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.wolf_tasks.model.util;
 
+/**
+ * Provides methods for a SortedList class
+ * @param <E>
+ * 
+ * @author Brendan_Viscount
+ */
 public interface ISortedList<E> {
 	
 	public void add(E element);

@@ -7,6 +7,12 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 
+/**
+ * NotebookReader class is in charge of reading properly formatted Notebook files and
+ * creating a related Notebook object
+ * 
+ * @author Brendan_Viscount
+ */
 public class NotebookReader {
 
 	/**

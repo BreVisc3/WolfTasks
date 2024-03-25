@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.wolf_tasks.model.util;
 
+/**
+ * SortedList is a collection class that stores data in a sorted manner
+ * @param <E> dataType of list
+ * 
+ * @author Brendan_Viscount
+ */
 public class SortedList<E> implements ISortedList<E> {
 	
 	/** Number of elements in the list */

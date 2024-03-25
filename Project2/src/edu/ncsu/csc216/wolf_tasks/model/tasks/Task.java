@@ -5,7 +5,7 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
  * to make up task lists. A task knows its name, description, whether
  * it is recurring or active and the list it is on
  * 
- * @author Brendan Viscount
+ * @author Brendan_Viscount
  */
 public class Task {
 	

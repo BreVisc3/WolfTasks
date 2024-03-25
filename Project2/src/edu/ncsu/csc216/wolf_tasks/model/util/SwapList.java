@@ -1,5 +1,11 @@
 package edu.ncsu.csc216.wolf_tasks.model.util;
 
+/**
+ * Provides methods to aid in the functionality of ActiveTaskList
+ * @param <E> data type
+ * 
+ * @author Brendan_Viscount
+ */
 public class SwapList<E> implements ISwapList<E> {
 	
 	/** Constant for intitial capacity of underlying array */

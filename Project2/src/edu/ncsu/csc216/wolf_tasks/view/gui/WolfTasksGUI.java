@@ -4,6 +4,11 @@ import java.awt.event.ActionEvent;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 
+/**
+ * The view/controller that clients interact with to utilize the program
+ * 
+ * @author Brendan_Viscount
+ */
 public class WolfTasksGUI {
 	
 	/** Notebook to work with */

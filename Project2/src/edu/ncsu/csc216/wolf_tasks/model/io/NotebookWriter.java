@@ -5,6 +5,12 @@ import java.io.File;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
 
+/**
+ * NotebookWriter class is in charge of writing Notebook information into
+ * files in the proper format for a Notebook
+ * 
+ * @author Brendan_Viscount
+ */
 public class NotebookWriter {
 
 	/**
