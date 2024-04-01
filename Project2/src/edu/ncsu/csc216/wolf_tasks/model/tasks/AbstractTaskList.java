@@ -15,7 +15,7 @@ public abstract class AbstractTaskList {
 	/** Number of completed tasks */
 	private int completedCount;
 	/** SwapList for functionality */
-	SwapList<Task> tasks = new SwapList<>();
+	ISwapList<Task> tasks = new SwapList<>();
 	 
 	 
 	
@@ -23,7 +23,10 @@ public abstract class AbstractTaskList {
 	 * AbstractTaskList Constructor
 	 */
 	public AbstractTaskList(String name, int numCompleted) {
-		taskListName = name;
+		if(completedCount < 0) {
+			throw new IllegalArgumentException("Invalid completed count.");
+		}
+		setTaskListName(name);
 		completedCount = numCompleted;
 	}
 	
@@ -38,9 +41,12 @@ public abstract class AbstractTaskList {
 	/**
 	 * Sets the name of the task list to the parameter
 	 * @param name to set for the task list
+	 * @throws IllegalArgumentException if parameter listName is null or empty
 	 */
 	public void setTaskListName(String listName) {
-		
+		if(listName == null || listName.isEmpty()) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 	}
 	
 	/**
@@ -48,7 +54,7 @@ public abstract class AbstractTaskList {
 	 * @return the list of tasks
 	 */
 	public ISwapList<Task> getTasks(){
-		return null;
+		return tasks;
 		
 	}
 	
@@ -66,6 +72,8 @@ public abstract class AbstractTaskList {
 	 */
 	public void addTask(Task task) {
 		
+		tasks.add(task);
+		task.addTaskList(this);
 	}
 	
 	/**
@@ -74,7 +82,10 @@ public abstract class AbstractTaskList {
 	 * @return removed element in parameter index
 	 */
 	public Task removeTask(int index) {
-		return null;
+		Task task = tasks.get(index);
+		tasks.remove(index);
+		
+		return task;
 	}
 	
 	/**
@@ -83,7 +94,7 @@ public abstract class AbstractTaskList {
 	 * @return task in index parameter
 	 */
 	public Task getTask(int index) {
-		return null;
+		return tasks.get(index);
 	}
 	
 	/**
@@ -91,6 +102,13 @@ public abstract class AbstractTaskList {
 	 * @param Task to mark completed
 	 */
 	public void completeTask(Task task) {
+		
+		for(int i = 0; i < tasks.size(); i++) {
+			if(tasks.get(i) == task) {
+				tasks.remove(i);
+				completedCount++;
+			}
+		}
 		
 	}
 	

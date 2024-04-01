@@ -172,7 +172,8 @@ public class Task implements Cloneable {
 	 * @Return the task written as a string
 	 */
 	public String toString() {
-		return "";
+		return "* " + getTaskName() + isRecurring() != null || false? "" : ",recurring" 
+				+ isActive() != null || false? "" : ",active" + "\n" + getTaskDescription();
 	}
 
 }
