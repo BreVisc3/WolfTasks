@@ -6,7 +6,7 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * 
  * @author Brendan_Viscount
  */
-public interface ISortedList<E> {
+public interface ISortedList<E> extends Comparable<E> {
 	
 	public void add(E element);
 	

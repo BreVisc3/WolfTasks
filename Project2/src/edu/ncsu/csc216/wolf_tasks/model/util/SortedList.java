@@ -6,25 +6,50 @@ package edu.ncsu.csc216.wolf_tasks.model.util;
  * 
  * @author Brendan_Viscount
  */
-public class SortedList<E> implements ISortedList<E> {
+public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	
 	/** Number of elements in the list */
-	private int size = 0;
+	private int size;
 	/** First element in the list*/
 	public ListNode front;
 	
 	/** SortedList constructor */
 	public SortedList() {
-		
+		front = null;
+		size = 0;
 	}
 
 	/**
 	 * Adds an element to the list
 	 * @param element to add 
+	 * @throws NullPointerException if element parameter is null
+	 * @throws IllegalArgumentException if the element is already on the list
 	 */
 	@Override
 	public void add(E element) {
-		
+		if(element == null) {
+			throw new NullPointerException("Cannot add null element.");
+		}
+		ListNode current = front;
+		for(int i = 0; i < size; i++) {
+			if(element.compareTo(current.data) == 0) {
+				throw new IllegalArgumentException("Cannot add duplicate element.");
+			}
+			current = current.next;
+		}
+		if(front.data.compareTo(element) > 0) {
+			front = new ListNode(element, front);
+		}
+		else {
+			current = front;
+			for(int i = 0; i < size; i++) {
+				if(element.compareTo(current.data) > 0) {
+					current.next = new ListNode(element, current.next.next);
+				}
+				current = current.next;
+			}
+				
+		}	
 		
 	}
 
@@ -32,19 +57,31 @@ public class SortedList<E> implements ISortedList<E> {
 	 * Removes an element from the list 
 	 * @param index of element to remove
 	 * @return removed element
+	 * @throws IllegalArgumentException if index is out of the bounds of the list
 	 */
 	@Override
 	public E remove(int index) {
+		checkIndex(index);
 		
-		return null;
+		ListNode current = front;
+		for(int i = 0; i < index - 1; i++) {
+			current = current.next;
+		}
+		
+		E value = current.next.data;
+		current.next = current.next.next.next;
+		return value;
 	}
 	
 	/**
 	 * Checks parameter index
 	 * @param index to check
+	 * @throws IllegalArgumentException if index is out of the bounds of the list
 	 */
 	private void checkIndex(int index) {
-		
+		if(index < 0 || index >= size) {
+			throw new IllegalArgumentException("Invalid index.");
+		}
 	}
 
 	/**
@@ -54,6 +91,13 @@ public class SortedList<E> implements ISortedList<E> {
 	 */
 	@Override
 	public boolean contains(E element) {
+		ListNode current = front;
+		for(int i = 0; i < size; i++) {
+			if(current.data == element) {
+				return true;
+			}
+			current = current.next;
+		}
 		
 		return false;
 	}
@@ -62,11 +106,17 @@ public class SortedList<E> implements ISortedList<E> {
 	 * Returns element in parameter index
 	 * @param index of element to return
 	 * @return element in parameter index
+	 * @throws IllegalArgumentException if index is out of the bounds of the list
 	 */
 	@Override
 	public E get(int index) {
+		checkIndex(index);
+		ListNode current = front;
+		for(int i = 0; i < index; i++) {
+			current = current.next;
+		}
 		
-		return null;
+		return current.data;
 	}
 
 	/**
@@ -94,6 +144,24 @@ public class SortedList<E> implements ISortedList<E> {
 			this.data = data;
 			this.next = next;
 		}
+	}
+
+	/**
+	 * Compares objects of generic type E
+	 * @return value 0 - equal, -1 - less than, 1 - greater than
+	 */
+	@Override
+	public int compareTo(E element) {
+		if(this.compareTo(element) == 0) {
+			return 0;
+		}
+		if(this.compareTo(element) > 0) {
+			return 1;
+		}
+		if(this.compareTo(element) < 0) {
+			return -1;
+		}
+		return -105;
 	}
 
 }
