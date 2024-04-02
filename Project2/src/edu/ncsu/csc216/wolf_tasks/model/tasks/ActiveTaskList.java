@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.wolf_tasks.model.tasks;
 
+import edu.ncsu.csc216.wolf_tasks.model.util.ISwapList;
+
 /**
  * Task list class for active tasks
  * 
@@ -15,7 +17,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @param numCompleted
 	 */
 	public ActiveTaskList(String name, int numCompleted) {
-		super(name, numCompleted);
+		super(ACTIVE_TASKS_NAME, 0);
 	}
 
 	/**
@@ -24,29 +26,47 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	@Override
 	public String[][] getTasksAsArray() {
-		return null;
+		String[][] info = new String[super.getTasks().size()][4];
+		for(int i = 0; i < super.getTasks().size(); i++) {
+			info[i][0] = tasks.get(i).getTaskListName();
+			info[i][1] = tasks.get(i).getTaskName();
+		}
+		return info;
 	}
 
 	/**
 	 * Add parameter task to the active list
 	 * @param Task to add
+	 * @throws IllegalArgumentException if task parameter is not active
 	 */
+	@Override
 	public void addTask(Task task) {
+		if(!task.isActive()) {
+			throw new IllegalArgumentException("Cannot add task to Active Tasks.");
+		}
 		
+		tasks.add(task);
 	}
 	
 	/**
 	 * Sets the name of the active list to parameter name
 	 * @param name to set for task list
 	 */
+	@Override
 	public void setTaskListName(String name) {
+		if(name != ACTIVE_TASKS_NAME) {
+			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
+		}
 		
+		setTaskListName(name);
 	}
 	
 	/**
 	 * Empties the active task list
 	 */
 	public void clearTasks() {
-		
+		while(tasks.size() != 0) {
+			tasks.remove(0);
+		}
 	}
 }

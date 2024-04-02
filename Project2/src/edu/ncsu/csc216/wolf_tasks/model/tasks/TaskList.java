@@ -20,7 +20,12 @@ public class TaskList extends AbstractTaskList{
 	 */
 	@Override
 	public String[][] getTasksAsArray() {
-		return null;
+		String[][] info = new String[super.getTasks().size()][4];
+		for(int i = 0; i < super.getTasks().size(); i++) {
+			info[i][0] = Integer.toString(i + 1);
+			info[i][1] = tasks.get(i).getTaskName();
+		}
+		return info;
 	}
 	
 	/**
@@ -29,6 +34,17 @@ public class TaskList extends AbstractTaskList{
 	 * @return integer representation of comparison -1 for before, 0 for equals, 1 for after
 	 */
 	public int compareTo(TaskList list) {
-		return 0;
+
+		if(getTaskListName().compareTo(list.getTaskListName()) == 0) {
+			return 0;
+		}
+		if(getTaskListName().compareTo(list.getTaskListName()) > 0) {
+			return 1;
+		}
+		if(getTaskListName().compareTo(list.getTaskListName()) < 0) {
+			return -1;
+		}
+		return -105;
+		
 	}
 }
