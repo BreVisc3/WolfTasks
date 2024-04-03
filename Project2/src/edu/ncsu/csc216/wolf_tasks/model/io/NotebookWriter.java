@@ -1,7 +1,7 @@
 package edu.ncsu.csc216.wolf_tasks.model.io;
 
 import java.io.File;
-import java.io.FileWriter;
+import java.io.PrintStream;
 
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
@@ -29,7 +29,16 @@ public class NotebookWriter {
 	 */
 	public static void writeNotebookFile(File fileName, String notebookName, ISortedList<TaskList> list) {
 		try {
-			FileWriter write = new FileWriter(fileName):
+			PrintStream writer = new PrintStream(fileName);
+			
+			writer.print("! " + notebookName + "\n");
+			
+			for(int i = 0; i < list.size(); i++) {
+				writer.print("# " + list.get(i).getTaskListName() + "," + list.get(i).getCompletedCount() + "\n");
+				for(int j = 0; j < list.get(i).getTasks().size(); j++) {
+					writer.print("* " + list.get(i).getTask(j).toString() + "\n");
+				}
+			}
 		} catch(Exception e) {
 			throw new IllegalArgumentException("Unable to save file.");
 		}
