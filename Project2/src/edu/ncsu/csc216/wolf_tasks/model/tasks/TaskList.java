@@ -4,8 +4,9 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
  * TaskList is a collection class for general Tasks
  * 
  * @author Brendan_Viscount
+ * @param <E>
  */
-public class TaskList extends AbstractTaskList{
+public class TaskList<E extends Comparable<E>> extends AbstractTaskList implements Comparable<E> {
 
 	/**
 	 * Task List constructor
@@ -33,18 +34,17 @@ public class TaskList extends AbstractTaskList{
 	 * @param task list to compare to
 	 * @return integer representation of comparison -1 for before, 0 for equals, 1 for after
 	 */
-	public int compareTo(TaskList list) {
-
-		if(getTaskListName().compareTo(list.getTaskListName()) == 0) {
+	public int compareTo(E list) {
+		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) == 0) {
 			return 0;
 		}
-		if(getTaskListName().compareTo(list.getTaskListName()) > 0) {
+		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) > 0) {
 			return 1;
 		}
-		if(getTaskListName().compareTo(list.getTaskListName()) < 0) {
+		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) < 0) {
 			return -1;
 		}
 		return -105;
-		
 	}
+
 }

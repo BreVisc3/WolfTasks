@@ -20,9 +20,9 @@ public class Notebook {
 	/** Flag for whether or not the notebook is changed */
 	private boolean isChanged;
 	/** Holds the active tasks in the notebook */
-	ActiveTaskList activeTaskList;
+	AbstractTaskList activeTaskList;
 	/** Holds current task list */
-	TaskList currentTaskList;
+	AbstractTaskList currentTaskList;
 	/** Other task lists */
 	SortedList taskLists;
 	
@@ -40,6 +40,7 @@ public class Notebook {
 	 */
 	public void saveNotebook(File filename) {
 		
+		isChanged = false;
 	}
 	
 	/**
@@ -55,7 +56,7 @@ public class Notebook {
 	 * @param name to set for the notebook
 	 */
 	private void setNotebookName(String name) {
-		
+		notebookName = name;
 	}
 	
 	/**
@@ -63,7 +64,7 @@ public class Notebook {
 	 * @return flag for whether or not the notebook is changed
 	 */
 	public boolean isChanged() {
-		return true;
+		return isChanged;
 	}
 	
 	/**
@@ -71,15 +72,20 @@ public class Notebook {
 	 * @param boolean value to set isChanged to
 	 */
 	public void setChanged(boolean changed) {
-		
+		isChanged = changed;
 	}
 	
 	/**
 	 * Adds a task list to the notebook
 	 * @param task list to add
 	 */
+	@SuppressWarnings("unchecked")
 	public void addTaskList(TaskList list) {
+		if(list.getTaskListName() == "Active Tasks" || taskLists.contains(list.getTaskListName())) {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 		
+		taskLists.add(list);
 	}
 	
 	/**
@@ -87,14 +93,28 @@ public class Notebook {
 	 * @return String[] representation of all task list names
 	 */
 	public String[] getTaskListNames() {
-		return null;
+		String[] names = new String[taskLists.size()];
+		names[0] = "Active Tasks";
+		for(int i = 0; i < taskLists.size(); i++) {
+			names[i] = taskLists.get(i).toString();
+		}
+		
+		return names;
 	}
 	
 	/**
 	 * Addresses the active task list of the notebook
 	 */
 	private void getActiveTaskList() {
-		
+		AbstractTaskList temp = new ActiveTaskList("Active Tasks", 0);
+		for(int i = 0; i < taskLists.size(); i++) {
+			for(int j = 0; j < ((AbstractTaskList)taskLists.get(i)).getTasks().size(); j++) {
+				if(((AbstractTaskList)taskLists.get(i)).getTasks().get(j).isActive()) {
+					temp.addTask(((AbstractTaskList)taskLists.get(i)).getTasks().get(j));
+				}
+			}
+		}
+		activeTaskList = temp;
 	}
 	
 	/**
@@ -102,7 +122,17 @@ public class Notebook {
 	 * @param name of the task list so set current
 	 */
 	public void setCurrentTaskList(String name) {
+		boolean flag = false;
+		for(int i = 0; i < taskLists.size(); i++) {
+			if(name.equals(taskLists.get(i).toString())) {
+				flag = true;
+				currentTaskList = (TaskList) taskLists.get(i);
+			}
+		}
 		
+		if(!flag) {
+			currentTaskList = activeTaskList;
+		}
 	}
 	
 	/**
@@ -110,7 +140,7 @@ public class Notebook {
 	 * @return the current task list
 	 */
 	public AbstractTaskList getCurrentTaskList() {
-		return null;
+		return currentTaskList;
 	}
 	
 	/**
@@ -118,13 +148,28 @@ public class Notebook {
 	 * @param name of task list to edit
 	 */
 	public void editTaskList(String name) {
+		if("Active Tasks".equalsIgnoreCase(name) || taskLists.contains(name) || currentTaskList instanceof ActiveTaskList) {
+			throw new IllegalArgumentException("Invalid information.");
+		}
 		
+		
+		isChanged = true;
 	}
 	
 	/**
 	 * Removes task list from the notebook
 	 */
 	public void removeTaskList() {
+		if(currentTaskList instanceof ActiveTaskList) {
+			throw new IllegalArgumentException("The Active Tasks list may not be deleted.");
+		}
+		for(int i = 0; i < taskLists.size(); i++) {
+			if(currentTaskList.getTaskListName().equals(taskLists.get(i).toString())) {
+				activeTaskList = (AbstractTaskList) taskLists.get(i);
+				taskLists.remove(i);
+				isChanged = true;
+			}
+		}
 		
 	}
 	
@@ -133,6 +178,13 @@ public class Notebook {
 	 * @param task to add
 	 */
 	public void addTask(Task task) {
+		if(currentTaskList instanceof TaskList) {
+			if(task.isActive()) {
+				getActiveTaskList(); //WHAT
+			}
+			currentTaskList.addTask(task);
+			isChanged = true;
+		}
 		
 	}
 	
@@ -146,6 +198,14 @@ public class Notebook {
 	 * @param isActive to set for task
 	 */
 	public void editTask(int index, String name, String description, boolean isRecurring, boolean isActive) {
-		
+		if(currentTaskList instanceof TaskList) {
+			
+			if(currentTaskList.getTask(index).isActive()) {
+				getActiveTaskList();
+			}
+			Task task = new Task(name, description, isRecurring, isActive);
+			currentTaskList.removeTask(index);
+			currentTaskList.addTask(task);
+		}
 	}
 }
