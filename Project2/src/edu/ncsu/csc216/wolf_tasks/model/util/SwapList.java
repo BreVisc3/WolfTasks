@@ -51,8 +51,8 @@ public class SwapList<E> implements ISwapList<E> {
 		checkIndex(index);
 		
 		E value = list[index];
-		for(int i = index; i < size; i++) {
-			list[i] = list[i + 1];
+		for(int i = index; i < size - 1; i++) {
+			moveUp(i + 1);
 		}
 		list[size - 1] = null; //Remove duplicate at end
 		size--; //Decrement size
@@ -68,6 +68,10 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveUp(int index) {
 		checkIndex(index);
 		
+		if (index == 0) {
+	        throw new IllegalArgumentException("Cannot move up the first element.");
+	    }
+		
 		E value = list[index];
 		list[index] = list[index - 1];
 		list[index - 1] = value;
@@ -81,6 +85,10 @@ public class SwapList<E> implements ISwapList<E> {
 	@Override
 	public void moveDown(int index) {
 		checkIndex(index);
+		
+		if (index == size - 1) {
+	        throw new IllegalArgumentException("Cannot move down the last element.");
+	    }
 		
 		E value = list[index];
 		list[index] = list[index + 1];

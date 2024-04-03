@@ -30,27 +30,27 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		if(element == null) {
 			throw new NullPointerException("Cannot add null element.");
 		}
-		ListNode current = front;
-		for(int i = 0; i < size; i++) {
-			if(element.compareTo(current.data) == 0) {
-				throw new IllegalArgumentException("Cannot add duplicate element.");
-			}
-			current = current.next;
-		}
-		if(front.data.compareTo(element) > 0) {
-			front = new ListNode(element, front);
-		}
-		else {
-			current = front;
-			for(int i = 0; i < size; i++) {
-				if(element.compareTo(current.data) > 0) {
-					current.next = new ListNode(element, current.next.next);
-				}
-				current = current.next;
-			}
-				
-		}	
 		
+		if (contains(element)) {
+	        throw new IllegalArgumentException("Cannot add duplicate element.");
+	    }
+		
+		if (front == null) {
+		        front = new ListNode(element, null);
+		    } 
+		else {
+		       if (element.compareTo(front.data) < 0) {
+		            front = new ListNode(element, front);
+		       } 
+		       else {
+		           ListNode current = front;
+		           while (current.next != null && element.compareTo(current.next.data) >= 0) {
+		               current = current.next;
+		           }
+		           current.next = new ListNode(element, current.next);
+		       }
+		}
+	    size++;
 	}
 
 	/**
@@ -63,14 +63,20 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	public E remove(int index) {
 		checkIndex(index);
 		
-		ListNode current = front;
-		for(int i = 0; i < index - 1; i++) {
-			current = current.next;
-		}
-		
-		E value = current.next.data;
-		current.next = current.next.next.next;
-		return value;
+		 E value;
+		    if (index == 0) { // Removing the front node
+		        value = front.data;
+		        front = front.next;
+		    } else {
+		        ListNode current = front;
+		        for (int i = 0; i < index - 1; i++) {
+		        	current = current.next;
+		        }
+		        value = current.next.data;
+		        current.next = current.next.next;
+		    }
+		    size--;
+		    return value;
 	}
 	
 	/**
@@ -93,7 +99,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	public boolean contains(E element) {
 		ListNode current = front;
 		for(int i = 0; i < size; i++) {
-			if(current.data == element) {
+			if(current.data.compareTo(element) == 0) {
 				return true;
 			}
 			current = current.next;
