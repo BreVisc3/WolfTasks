@@ -16,7 +16,7 @@ public class ActiveTaskList extends AbstractTaskList {
 	 * @param name
 	 * @param numCompleted
 	 */
-	public ActiveTaskList(String name, int numCompleted) {
+	public ActiveTaskList() {
 		super(ACTIVE_TASKS_NAME, 0);
 	}
 
