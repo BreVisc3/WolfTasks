@@ -13,6 +13,7 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
  * Notebook class manages TaskLists on a larger scale
  * 
  * @author Brendan_Viscount
+ * @param <E>
  */
 public class Notebook {
 

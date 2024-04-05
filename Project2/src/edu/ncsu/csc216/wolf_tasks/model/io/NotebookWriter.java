@@ -39,8 +39,9 @@ public class NotebookWriter {
 					writer.print(list.get(i).getTask(j).toString() + "\n");
 				}
 			}
+			writer.close();
 		} catch(Exception e) {
 			throw new IllegalArgumentException("Unable to save file.");
-		}
+		} 
 	}
 }

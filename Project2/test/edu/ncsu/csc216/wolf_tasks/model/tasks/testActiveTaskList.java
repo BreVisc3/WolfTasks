@@ -34,15 +34,14 @@ ActiveTaskList list;
 	 */
 	@Test
 	public void testTaskList() {
-		ActiveTaskList test = new ActiveTaskList("Name", 0);
 		
 		try {
 			
-			test = new ActiveTaskList("Something", 0);
-			test = new ActiveTaskList("Work", 0);
-			test = new ActiveTaskList("Labs", 20);
-			test = new ActiveTaskList("Projects", 1000);
-			test = new ActiveTaskList("Something else", 56);
+			new ActiveTaskList("Something", 0);
+			new ActiveTaskList("Work", 0);
+			new ActiveTaskList("Labs", 20);
+			new ActiveTaskList("Projects", 1000);
+			new ActiveTaskList("Something else", 56);
 		} catch(Exception e) {
 			fail("Unexpected exception thrown for valid TaskList constructors");
 		} finally {

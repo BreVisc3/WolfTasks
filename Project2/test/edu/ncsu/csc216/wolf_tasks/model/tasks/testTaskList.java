@@ -37,11 +37,10 @@ public class testTaskList {
 		
 		try {
 			
-			TaskList test = new TaskList("Something", 0);
-			test = new TaskList("Work", 0);
-			test = new TaskList("Labs", 20);
-			test = new TaskList("Projects", 1000);
-			test = new TaskList("Something else", 56);
+			new TaskList("Work", 0);
+			new TaskList("Labs", 20);
+			new TaskList("Projects", 1000);
+			new TaskList("Something else", 56);
 		} catch(Exception e) {
 			fail("Unexpected exception thrown for valid TaskList constructors");
 		}
