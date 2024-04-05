@@ -20,7 +20,7 @@ ActiveTaskList list;
 	 */
 	@Before
 	public void setUp() {
-		list = new ActiveTaskList("List", 0);
+		list = new ActiveTaskList();
 		
 		list.addTask(new Task("Homework", "CSC216", true, true));
 		list.addTask(new Task("Class", "CSC226", true, true));
@@ -37,11 +37,11 @@ ActiveTaskList list;
 		
 		try {
 			
-			new ActiveTaskList("Something", 0);
-			new ActiveTaskList("Work", 0);
-			new ActiveTaskList("Labs", 20);
-			new ActiveTaskList("Projects", 1000);
-			new ActiveTaskList("Something else", 56);
+			new ActiveTaskList();
+			new ActiveTaskList();
+			new ActiveTaskList();
+			new ActiveTaskList();
+			new ActiveTaskList();
 		} catch(Exception e) {
 			fail("Unexpected exception thrown for valid TaskList constructors");
 		} finally {

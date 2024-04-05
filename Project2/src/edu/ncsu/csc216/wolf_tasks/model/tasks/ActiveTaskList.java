@@ -13,7 +13,6 @@ public class ActiveTaskList extends AbstractTaskList {
 
 	/**
 	 * ActiveTaskList constructor
-	 * @param name
 	 * @param numCompleted
 	 */
 	public ActiveTaskList() {

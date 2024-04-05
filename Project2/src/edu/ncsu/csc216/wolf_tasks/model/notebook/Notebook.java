@@ -34,7 +34,7 @@ public class Notebook {
 	 */
 	public Notebook(String name) {
 		taskLists = new SortedList();
-		activeTaskList = new ActiveTaskList("Active Tasks", 0);
+		activeTaskList = new ActiveTaskList();
 		currentTaskList = new TaskList("Current Tasks", 0);
 		setNotebookName(name);
 	}
@@ -122,7 +122,7 @@ public class Notebook {
 	 * Addresses the active task list of the notebook
 	 */
 	private void getActiveTaskList() {
-		AbstractTaskList temp = new ActiveTaskList("Active Tasks", 0);
+		AbstractTaskList temp = new ActiveTaskList();
 		for(int i = 0; i < taskLists.size(); i++) {
 			for(int j = 0; j < ((AbstractTaskList)taskLists.get(i)).getTasks().size(); j++) {
 				if(((AbstractTaskList)taskLists.get(i)).getTasks().get(j).isActive()) {
