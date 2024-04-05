@@ -102,7 +102,7 @@ public class Notebook {
 	 * Returns the name of all task lists in the notebook as a String[]
 	 * @return String[] representation of all task list names
 	 */
-	public String[] getTaskListNames() {
+	public String[] getTaskListsNames() {
 		if(taskLists.size() != 0) {
 			String[] names = new String[taskLists.size()];
 			names[0] = "Active Tasks";

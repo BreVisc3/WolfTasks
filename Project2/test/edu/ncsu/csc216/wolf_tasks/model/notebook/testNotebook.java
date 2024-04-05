@@ -63,7 +63,7 @@ public class testNotebook {
 	@Test
 	public void testAddTaskList() {
 		
-		assertEquals(4, notebook.getTaskListNames().length);
+		assertEquals(4, notebook.getTaskListsNames().length);
 		
 		Exception e1 = assertThrows(IllegalArgumentException.class,
 				() -> notebook.addTaskList(new TaskList("Active Tasks", 0)));
@@ -79,19 +79,19 @@ public class testNotebook {
 	@Test
 	public void testRemoveTaskList() {
 		
-		assertEquals(4, notebook.getTaskListNames().length);
+		assertEquals(4, notebook.getTaskListsNames().length);
 		
 		try {
 			notebook.removeTaskList();
-			assertEquals(3, notebook.getTaskListNames().length);
+			assertEquals(3, notebook.getTaskListsNames().length);
 			
 			notebook.setCurrentTaskList("School");
 			notebook.removeTaskList();
-			assertEquals(2, notebook.getTaskListNames().length);
+			assertEquals(2, notebook.getTaskListsNames().length);
 			
 			notebook.setCurrentTaskList("Work");
 			notebook.removeTaskList();
-			assertEquals(1, notebook.getTaskListNames().length);
+			assertEquals(1, notebook.getTaskListsNames().length);
 			
 		} catch(Exception e) {
 			fail("Unexpected exception thrown removing valid index.");

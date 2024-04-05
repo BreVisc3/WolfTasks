@@ -459,7 +459,7 @@ public class WolfTasksGUI extends JFrame implements ActionListener {
 				btnRemoveTaskList.setEnabled(true);
 				
 				comboTaskLists.removeAllItems();
-				String [] taskListNames = notebook.getTaskListNames();
+				String [] taskListNames = notebook.getTaskListsNames();
 				for (int i = 0; i < taskListNames.length; i++) {
 					comboTaskLists.addItem(taskListNames[i]);
 				}

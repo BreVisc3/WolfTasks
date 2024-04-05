@@ -31,7 +31,7 @@ public class testNotebookReader {
 			
 			Notebook notebook = NotebookReader.readNotebookFile(file);
 			
-			assertEquals(3, notebook.getTaskListNames().length);
+			assertEquals(3, notebook.getTaskListsNames().length);
 			assertEquals("Notebook", notebook.getNotebookName());
 		} catch(Exception e) {
 			fail("Unexpected exception thrown while reading file.");
