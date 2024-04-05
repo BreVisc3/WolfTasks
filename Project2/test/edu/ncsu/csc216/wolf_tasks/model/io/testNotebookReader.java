@@ -27,8 +27,9 @@ public class testNotebookReader {
 		
 			File file = new File("test-files/expected_out.txt");
 	
-			NotebookReader read = new NotebookReader();
-			Notebook notebook = read.readNotebookFile(file);
+			NotebookReader read = new NotebookReader(); //Constructor coverage
+			
+			Notebook notebook = NotebookReader.readNotebookFile(file);
 			
 			assertEquals(3, notebook.getTaskListNames().length);
 			assertEquals("Notebook", notebook.getNotebookName());

@@ -49,8 +49,8 @@ public class NotebookReader {
             }
             header = header.substring(1).trim();
             Notebook notebook = new Notebook(header);
-
-            while (allReader.hasNext()) {
+            
+            while (allReader.hasNextLine()) {
                 notebook.addTaskList(processTaskList(allReader.next()));
             }
             allReader.close();
@@ -68,15 +68,21 @@ public class NotebookReader {
 	 */
 	private static TaskList processTaskList(String listInfo) {
 		Scanner listReader = new Scanner(listInfo);
-	        String listName = listReader.nextLine().trim();
-	        TaskList list = new TaskList(listName, 0);
+	    String first = listReader.nextLine().trim();
+	    String[] split = first.split(",");
+	    String listName = split[0];
+	    String count = split[1];
+	    
+	    TaskList list = new TaskList(listName, Integer.parseInt(count));
 
-	        while (listReader.hasNext()) {
-	            list.addTask(processTask(list, listReader.nextLine()));
-	        }
-	        listReader.close();
+	    listReader.useDelimiter("\\r?\\n?[*]");
 
-	        return list;
+	    while (listReader.hasNext()) {
+	        list.addTask(processTask(list, listReader.next()));
+	    }
+	    listReader.close();
+
+	    return list;
 	}
 	
 	/**
@@ -86,25 +92,30 @@ public class NotebookReader {
 	 * @return a Task object with the information from parameter
 	 */
 	private static Task processTask(AbstractTaskList list, String taskInfo) {
-		Scanner taskReader = new Scanner(taskInfo);
-        taskReader.useDelimiter(",");
-        String name = taskReader.next().trim();
-        boolean recurring = false;
-        boolean active = false;
-        StringBuilder description = new StringBuilder();
-        
-        while (taskReader.hasNext()) {
-            String flag = taskReader.next().trim();
-            if ("recurring".equalsIgnoreCase(flag)) {
-                recurring = true;
-            } else if ("active".equalsIgnoreCase(flag)) {
-                active = true;
-            } else {
-                description.append(flag);
-            }
-        }
-        taskReader.close();
+		Scanner taskScanner = new Scanner(taskInfo);
+	    taskScanner.useDelimiter("&!@");
+	    String first = taskScanner.nextLine();
+	    String description = taskScanner.next();
+	    
+	    Scanner firstScanner = new Scanner(first);
+	    firstScanner.useDelimiter(",");
 
-        return new Task(name, description.toString(), recurring, active);
+	    String name = firstScanner.next().substring(1).trim(); 
+
+	    boolean recurring = false;
+	    boolean active = false;
+
+	    while (firstScanner.hasNext()) {
+	        String token = firstScanner.next().trim();
+	        if ("recurring".equalsIgnoreCase(token)) {
+	            recurring = true;
+	        } else if ("active".equalsIgnoreCase(token)) {
+	            active = true;
+	        }
+	    }
+	    firstScanner.close();
+	    taskScanner.close();
+
+	    return new Task(name, description.trim(), recurring, active);
     }
 }
