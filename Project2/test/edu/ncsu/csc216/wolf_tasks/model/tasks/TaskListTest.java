@@ -9,18 +9,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Tests functionality of ActiveTaskList
+ * Tests functionality of AbstractTaskList
  */
-public class testActiveTaskList {
-
-ActiveTaskList list;
+public class TaskListTest {
+	
+	TaskList list;
 	
 	/**
 	 * Prepare list for testing
 	 */
 	@Before
 	public void setUp() {
-		list = new ActiveTaskList();
+		list = new TaskList("List", 0);
 		
 		list.addTask(new Task("Homework", "CSC216", true, true));
 		list.addTask(new Task("Class", "CSC226", true, true));
@@ -37,19 +37,24 @@ ActiveTaskList list;
 		
 		try {
 			
-			new ActiveTaskList();
-			new ActiveTaskList();
-			new ActiveTaskList();
-			new ActiveTaskList();
-			new ActiveTaskList();
+			new TaskList("Work", 0);
+			new TaskList("Labs", 20);
+			new TaskList("Projects", 1000);
+			new TaskList("Something else", 56);
 		} catch(Exception e) {
 			fail("Unexpected exception thrown for valid TaskList constructors");
-		} finally {
-		
-			Exception e1 = assertThrows(IllegalArgumentException.class,
-					() -> list.setTaskListName("Name"));
-			assertEquals(e1.getMessage(), "The Active Tasks list may not be edited.");
 		}
+		
+		Exception e1 = assertThrows(IllegalArgumentException.class,
+				() -> new TaskList("", 0));
+		assertEquals(e1.getMessage(), "Invalid name.");
+		Exception e2 = assertThrows(IllegalArgumentException.class,
+				() -> new TaskList(null, 0));
+		assertEquals(e2.getMessage(), "Invalid name.");
+		
+		Exception e3 = assertThrows(IllegalArgumentException.class,
+				() -> new TaskList("Something", -1));
+		assertEquals(e3.getMessage(), "Invalid completed count.");
 	}
 	
 	/**
@@ -71,11 +76,6 @@ ActiveTaskList list;
 		list.addTask(new Task("Meeting", "CSC217", true, true));
 		list.addTask(new Task("Homework", "ST370", true, true));
 		assertEquals(12, list.getTasks().size());
-		
-
-		Exception e1 = assertThrows(IllegalArgumentException.class,
-				() -> list.addTask(new Task("Homework", "CSC216", false, false)));
-		assertEquals(e1.getMessage(), "Cannot add task to Active Tasks.");
 	}
 	
 	/**
@@ -131,9 +131,9 @@ ActiveTaskList list;
 			fail("Unexpected exception converting list to information array");
 		}
 		
-		assertEquals(info[0][0], "");
+		assertEquals(info[0][0], "1");
 		assertEquals(info[0][1], "Homework");
-		assertEquals(info[3][0], "");
+		assertEquals(info[3][0], "4");
 		assertEquals(info[3][1], "Homework");
 	}
 	
@@ -150,25 +150,11 @@ ActiveTaskList list;
 		
 		assertTrue(task1.compareTo(task2) > 0);
 		assertTrue(task3.compareTo(task1) > 0);
-		assertTrue(task1.compareTo(task4) == 0);
+		assertEquals(task1.compareTo(task4), 0);
 		
 		assertTrue(task2.compareTo(task3) < 0);
 		assertTrue(task1.compareTo(task3) < 0);
 		
-	}
-	
-	/**
-	 * Tests the functionality of clearTasks
-	 */
-	@Test
-	public void testClearTasks() {
 		
-		assertEquals(4, list.getTasks().size());
-		try {
-			list.clearTasks();
-			assertEquals(0, list.getTasks().size());
-		} catch(Exception e) {
-			fail("Unexpected exception thrown when clearing ActiveTaskList.");
-		}
 	}
-}
+}	

@@ -11,13 +11,12 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
-import edu.ncsu.csc216.wolf_tasks.model.tasks.AbstractTaskList;
 import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
 
 /**
  * Tests the functionality of NotebookWriter
  */
-public class testNotebookWriter {
+public class NotebookWriterTest {
 	 
 	
 	/**
@@ -27,8 +26,6 @@ public class testNotebookWriter {
 	public void testWriteNotebookToFile() {
 		
 		try {
-		
-			NotebookWriter write = new NotebookWriter();
 			
 			Notebook notebook = new Notebook("Notebook");
 			

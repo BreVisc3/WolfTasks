@@ -16,13 +16,6 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
  * @author Brendan_Viscount
  */
 public class NotebookReader {
-
-	/**
-	 * NotebookReader constructor
-	 */
-	public NotebookReader() {
-		
-	}
 	
 	/**
 	 * Reads Notebook information from File with parameter fileName

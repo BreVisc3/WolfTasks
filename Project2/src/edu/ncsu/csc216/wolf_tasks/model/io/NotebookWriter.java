@@ -13,13 +13,6 @@ import edu.ncsu.csc216.wolf_tasks.model.util.ISortedList;
  * @author Brendan_Viscount
  */
 public class NotebookWriter {
-
-	/**
-	 * NotebookWriter constructor
-	 */
-	public NotebookWriter() {
-		
-	}
 	
 	/**
 	 * Writes the information stored in a taskList into a file

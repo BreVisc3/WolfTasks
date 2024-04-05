@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * Tests the functionality of the Task object which is core to the program structure
  */
-public class testTask {
+public class TaskTest {
 	
 	/**
 	 * Tests functionality of Task constructor

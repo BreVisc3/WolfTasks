@@ -8,14 +8,12 @@ import java.io.File;
 import org.junit.Test;
 
 import edu.ncsu.csc216.wolf_tasks.model.notebook.Notebook;
-import edu.ncsu.csc216.wolf_tasks.model.tasks.Task;
-import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 
 
 /**
  * Tests functionality of NotebookReader class
  */
-public class testNotebookReader {
+public class NotebookReaderTest {
 
 	/**
 	 * Tests functionality of readNotebookFromFile
@@ -26,8 +24,6 @@ public class testNotebookReader {
 		try {
 		
 			File file = new File("test-files/expected_out.txt");
-	
-			NotebookReader read = new NotebookReader(); //Constructor coverage
 			
 			Notebook notebook = NotebookReader.readNotebookFile(file);
 			

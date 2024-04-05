@@ -1,6 +1,7 @@
 package edu.ncsu.csc216.wolf_tasks.model.notebook;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
@@ -14,7 +15,7 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
 /**
  * Tests the functionality of the Notebook class object
  */
-public class testNotebook {
+public class NotebookTest {
 	
 	Notebook notebook;
 	
@@ -120,7 +121,7 @@ public class testNotebook {
         assertEquals("Task 1 Edited", notebook.getCurrentTaskList().getTask(0).getTaskName());
         assertEquals("Description 1 Edited", notebook.getCurrentTaskList().getTask(0).getTaskDescription());
         assertTrue(notebook.getCurrentTaskList().getTask(0).isRecurring());
-        assertTrue(!notebook.getCurrentTaskList().getTask(0).isActive());
+        assertFalse(notebook.getCurrentTaskList().getTask(0).isActive());
         assertTrue(notebook.isChanged());
     }
     

@@ -11,7 +11,7 @@ import org.junit.Test;
 /**
  * Tests functionality of SortedList Class collection
  */
-public class testSortedList {
+public class SortedListTest {
 	
 	SortedList<String> list;
 	
