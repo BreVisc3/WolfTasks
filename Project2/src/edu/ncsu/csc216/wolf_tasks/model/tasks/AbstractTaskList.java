@@ -23,7 +23,7 @@ public abstract class AbstractTaskList {
 	 * AbstractTaskList Constructor
 	 */
 	public AbstractTaskList(String name, int numCompleted) {
-		if(completedCount < 0) {
+		if(numCompleted < 0) {
 			throw new IllegalArgumentException("Invalid completed count.");
 		}
 		setTaskListName(name);
@@ -47,6 +47,8 @@ public abstract class AbstractTaskList {
 		if(listName == null || listName.isEmpty()) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
+		
+		this.taskListName = listName;
 	}
 	
 	/**

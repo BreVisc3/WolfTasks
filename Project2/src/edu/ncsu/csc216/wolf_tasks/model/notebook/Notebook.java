@@ -32,7 +32,10 @@ public class Notebook {
 	 * @param name of the notebook
 	 */
 	public Notebook(String name) {
-		notebookName = name;
+		taskLists = new SortedList();
+		activeTaskList = new ActiveTaskList("Active Tasks", 0);
+		currentTaskList = new TaskList("Current Tasks", 0);
+		setNotebookName(name);
 	}
 	
 	/**
@@ -58,6 +61,9 @@ public class Notebook {
 	 * @param name to set for the notebook
 	 */
 	private void setNotebookName(String name) {
+		if(name == null || name.isEmpty() || name == "Active Tasks") {
+			throw new IllegalArgumentException("Invalid name.");
+		}
 		notebookName = name;
 	}
 	
@@ -83,11 +89,12 @@ public class Notebook {
 	 */
 	@SuppressWarnings("unchecked")
 	public void addTaskList(TaskList list) {
-		if(list.getTaskListName() == "Active Tasks" || taskLists.contains(list.getTaskListName())) {
+		if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		
 		taskLists.add(list);
+		currentTaskList = list;
 	}
 	
 	/**
@@ -126,10 +133,12 @@ public class Notebook {
 	public void setCurrentTaskList(String name) {
 		boolean flag = false;
 		for(int i = 0; i < taskLists.size(); i++) {
-			if(name.equals(taskLists.get(i).toString())) {
-				flag = true;
-				currentTaskList = (TaskList) taskLists.get(i);
-			}
+			TaskList list = (TaskList) taskLists.get(i);
+			if (list.getTaskListName().equals(name)) {
+	            currentTaskList = list;
+	            flag = true;
+	            break;
+	        }
 		}
 		
 		if(!flag) {
@@ -150,28 +159,54 @@ public class Notebook {
 	 * @param name of task list to edit
 	 */
 	public void editTaskList(String name) {
-		if("Active Tasks".equalsIgnoreCase(name) || taskLists.contains(name) || currentTaskList instanceof ActiveTaskList) {
-			throw new IllegalArgumentException("Invalid information.");
-		}
 		
-		
-		isChanged = true;
+		if (currentTaskList instanceof ActiveTaskList || "Active Tasks".equalsIgnoreCase(name)) {
+	        throw new IllegalArgumentException("Invalid information.");
+	    }
+	    int currentIndex = -1;
+	    for (int i = 0; i < taskLists.size(); i++) {
+	        if (currentTaskList.equals(taskLists.get(i))) {
+	            currentIndex = i;
+	        }
+	        if (name.equalsIgnoreCase(((AbstractTaskList) taskLists.get(i)).getTaskListName())) {
+	            throw new IllegalArgumentException("Duplicate task list name.");
+	        }
+	    }
+	    if (currentIndex != -1) {
+	        taskLists.remove(currentIndex);
+	    } else {
+	        throw new IllegalArgumentException("Current task list not found.");
+	    }
+	    currentTaskList.setTaskListName(name);
+	    taskLists.add((TaskList) currentTaskList);
+	    setChanged(true);
 	}
 	
 	/**
 	 * Removes task list from the notebook
 	 */
 	public void removeTaskList() {
-		if(currentTaskList instanceof ActiveTaskList) {
-			throw new IllegalArgumentException("The Active Tasks list may not be deleted.");
-		}
-		for(int i = 0; i < taskLists.size(); i++) {
-			if(currentTaskList.getTaskListName().equals(taskLists.get(i).toString())) {
-				activeTaskList = (AbstractTaskList) taskLists.get(i);
-				taskLists.remove(i);
-				isChanged = true;
-			}
-		}
+		if (currentTaskList instanceof ActiveTaskList) {
+	        throw new IllegalArgumentException("The Active Tasks list may not be deleted.");
+	    }
+	    
+	    String currentName = currentTaskList.getTaskListName();
+	    
+	    int indexToRemove = -1;
+	    for (int i = 0; i < taskLists.size(); i++) {
+	        TaskList list = (TaskList) taskLists.get(i);
+	        if (list.getTaskListName().equals(currentName)) {
+	            indexToRemove = i;
+	            break;
+	        }
+	    }
+	    if (indexToRemove != -1) {
+	        taskLists.remove(indexToRemove);
+	        activeTaskList = currentTaskList;
+	        isChanged = true;
+	    } else {
+	        throw new IllegalArgumentException("Task list not found in the notebook.");
+	    }
 		
 	}
 	

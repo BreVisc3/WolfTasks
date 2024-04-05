@@ -26,11 +26,12 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	@Override
 	public String[][] getTasksAsArray() {
-		String[][] info = new String[super.getTasks().size()][4];
+		String[][] info = new String[super.getTasks().size()][2];
 		for(int i = 0; i < super.getTasks().size(); i++) {
 			info[i][0] = tasks.get(i).getTaskListName();
 			info[i][1] = tasks.get(i).getTaskName();
 		}
+		
 		return info;
 	}
 
@@ -58,7 +59,7 @@ public class ActiveTaskList extends AbstractTaskList {
 			throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 		}
 		
-		setTaskListName(name);
+		super.setTaskListName(name);
 	}
 	
 	/**

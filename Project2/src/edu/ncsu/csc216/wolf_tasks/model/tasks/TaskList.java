@@ -21,7 +21,7 @@ public class TaskList<E extends Comparable<E>> extends AbstractTaskList implemen
 	 */
 	@Override
 	public String[][] getTasksAsArray() {
-		String[][] info = new String[super.getTasks().size()][4];
+		String[][] info = new String[super.getTasks().size()][2];
 		for(int i = 0; i < super.getTasks().size(); i++) {
 			info[i][0] = Integer.toString(i + 1);
 			info[i][1] = tasks.get(i).getTaskName();
@@ -35,16 +35,16 @@ public class TaskList<E extends Comparable<E>> extends AbstractTaskList implemen
 	 * @return integer representation of comparison -1 for before, 0 for equals, 1 for after
 	 */
 	public int compareTo(E list) {
-		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) == 0) {
-			return 0;
-		}
-		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) > 0) {
-			return 1;
-		}
-		if(getTaskListName().compareTo(((AbstractTaskList) list).getTaskListName()) < 0) {
-			return -1;
-		}
-		return -105;
+		if (list == null) {
+	        throw new NullPointerException("Cannot compare to null");
+	    }
+
+	    if (list instanceof AbstractTaskList) {
+	        AbstractTaskList otherList = (AbstractTaskList) list;
+	        return this.getTaskListName().compareTo(otherList.getTaskListName());
+	    } else {
+	        throw new ClassCastException("Cannot cast " + list.getClass() + " to AbstractTaskList");
+	    }
 	}
 
 }

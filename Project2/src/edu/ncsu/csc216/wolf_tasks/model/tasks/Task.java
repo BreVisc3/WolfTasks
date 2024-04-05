@@ -111,7 +111,7 @@ public class Task implements Cloneable {
 	 * @return String of the name of the task list
 	 */
 	public String getTaskListName() {
-		if(taskLists.get(0).getTaskListName() == null || taskLists.get(0).getTaskListName().isEmpty()) {
+		if(taskLists == null || taskLists.size() == 0) {
 			return "";
 		}
 		
@@ -161,7 +161,7 @@ public class Task implements Cloneable {
 	 * @throws CloneNotSupportedException 
 	 */
 	public Object clone() throws CloneNotSupportedException {
-		if(taskLists == null || taskLists.get(0) == null) {
+		if(taskLists == null || taskLists.size() == 0) {
 			throw new CloneNotSupportedException("Cannot clone.");
 		}
 		return new Task(taskName, taskDescription, recurring, active);
@@ -178,9 +178,12 @@ public class Task implements Cloneable {
 			desc += "- " + description[i] + "\n";
 		}
 		
-		
-		return "* " + getTaskName() + isRecurring() != null || false? "" : ",recurring" 
-				+ isActive() != null || false? "" : ",active" + "\n" + desc;
+		String info = "* " + getTaskName() +
+                 ( isRecurring() ? ",recurring" : "") +
+                 ( isActive() ? ",active" : "") +
+                 "\n" + desc;
+
+		return info;
 	}
 
 }

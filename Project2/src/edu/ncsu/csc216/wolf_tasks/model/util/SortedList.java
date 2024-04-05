@@ -158,16 +158,20 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	@Override
 	public int compareTo(E element) {
-		if(this.compareTo(element) == 0) {
-			return 0;
-		}
-		if(this.compareTo(element) > 0) {
-			return 1;
-		}
-		if(this.compareTo(element) < 0) {
-			return -1;
-		}
-		return -105;
+		char[] thisArray = this.toString().toCharArray();
+	    char[] otherArray = element.toString().toCharArray();
+	    
+	    int minLength = Math.min(thisArray.length, otherArray.length);
+	    
+	    for (int i = 0; i < minLength; i++) {
+	        if (thisArray[i] < otherArray[i]) {
+	            return -1;
+	        } else if (thisArray[i] > otherArray[i]) {
+	            return 1;
+	        }
+	    }
+	    
+	    return Integer.compare(thisArray.length, otherArray.length);
 	}
 
 }

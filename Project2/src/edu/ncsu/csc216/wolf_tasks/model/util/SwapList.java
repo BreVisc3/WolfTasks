@@ -23,6 +23,7 @@ public class SwapList<E> implements ISwapList<E> {
 		
 		Object[] s = new Object[INITIAL_CAPACITY];
 		list = (E[])s;
+		size = 0;
 	}
 
 	/**
@@ -154,7 +155,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 */
 	@SuppressWarnings("unchecked")
 	private void checkCapacity(int index) {
-		if(index >= list.length - 2) {
+		if(index >= list.length - 1) {
 			E[] temp = list.clone();
 			list = (E[])new Object[list.length * 2];
 			for(int i = 0; i < size; i++) {
