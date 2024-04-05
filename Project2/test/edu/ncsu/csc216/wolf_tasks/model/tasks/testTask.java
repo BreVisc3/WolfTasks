@@ -118,10 +118,10 @@ public class testTask {
 	public void testToString() {
 		try {
 			Task task = new Task("Homework", "CSC216", true, true);
-			assertEquals(task.toString(), "* Homework,recurring,active\n- CSC216\n");
+			assertEquals(task.toString(), "* Homework,recurring,active\nCSC216");
 			
 			task = new Task("Class", "CSC226", true, false);
-			assertEquals(task.toString(), "* Class,recurring\n- CSC226\n");
+			assertEquals(task.toString(), "* Class,recurring\nCSC226");
 		} catch (Exception e) {
 			fail("Unexpected error trying to test toString");
 		}

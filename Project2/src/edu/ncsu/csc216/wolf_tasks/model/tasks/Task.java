@@ -175,7 +175,12 @@ public class Task implements Cloneable {
 		String[] description = getTaskDescription().split("\n");
 		String desc = "";
 		for(int i = 0; i < description.length; i++) {
-			desc += "- " + description[i] + "\n";
+			if(i == description.length - 1) {
+				desc += description[i];
+			}
+			else {
+				desc += description[i] + "\n";
+			}
 		}
 		
 		String info = "* " + getTaskName() +

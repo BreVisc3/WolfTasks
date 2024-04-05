@@ -36,7 +36,7 @@ public class NotebookWriter {
 			for(int i = 0; i < list.size(); i++) {
 				writer.print("# " + list.get(i).getTaskListName() + "," + list.get(i).getCompletedCount() + "\n");
 				for(int j = 0; j < list.get(i).getTasks().size(); j++) {
-					writer.print("* " + list.get(i).getTask(j).toString() + "\n");
+					writer.print(list.get(i).getTask(j).toString() + "\n");
 				}
 			}
 		} catch(Exception e) {

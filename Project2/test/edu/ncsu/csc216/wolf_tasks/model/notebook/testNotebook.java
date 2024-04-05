@@ -98,15 +98,20 @@ public class testNotebook {
 		}
 	}
 	
+	/**
+	 * Tests functionality of addTask
+	 */
 	@Test
     public void testAddTask() {
 
         Task task = new Task("Task 1", "Description 1", false, true);
         notebook.addTask(task);
-       // assertTrue(notebook.getCurrentTaskList().getTasks().(task));
         assertTrue(notebook.isChanged());
     }
 
+	/**
+	 * Tests functionality of editTask
+	 */
     @Test
     public void testEditTask() {
         Task task = new Task("Task 1", "Description 1", false, true);
@@ -119,6 +124,9 @@ public class testNotebook {
         assertTrue(notebook.isChanged());
     }
     
+    /**
+     * Tests functionality of editTaskList
+     */
     @Test
     public void testEditTaskListValid() {
 
@@ -128,6 +136,9 @@ public class testNotebook {
         assertTrue(notebook.isChanged());
     }
     
+    /**
+     * Tests functionality of editTaskList when faced with invalid parameters
+     */
     @Test
     public void testEditTaskListInvalid() {
 

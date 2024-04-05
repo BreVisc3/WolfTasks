@@ -21,11 +21,11 @@ public class Notebook {
 	/** Flag for whether or not the notebook is changed */
 	private boolean isChanged;
 	/** Holds the active tasks in the notebook */
-	AbstractTaskList activeTaskList;
+	private AbstractTaskList activeTaskList;
 	/** Holds current task list */
-	AbstractTaskList currentTaskList;
+	private AbstractTaskList currentTaskList;
 	/** Other task lists */
-	SortedList taskLists;
+	public SortedList taskLists;
 	
 	/**
 	 * Notebook constructor
