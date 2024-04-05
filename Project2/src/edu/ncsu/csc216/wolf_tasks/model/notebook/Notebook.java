@@ -26,14 +26,14 @@ public class Notebook {
 	/** Holds current task list */
 	private AbstractTaskList currentTaskList;
 	/** Other task lists */
-	public SortedList taskLists;
+	public SortedList<TaskList> taskLists;
 	
 	/**
 	 * Notebook constructor
 	 * @param name of the notebook
 	 */
 	public Notebook(String name) {
-		taskLists = new SortedList();
+		taskLists = new SortedList<TaskList>();
 		activeTaskList = new ActiveTaskList();
 		currentTaskList = new TaskList("Current Tasks", 0);
 		setNotebookName(name);
@@ -88,7 +88,6 @@ public class Notebook {
 	 * Adds a task list to the notebook
 	 * @param task list to add
 	 */
-	@SuppressWarnings("unchecked")
 	public void addTaskList(TaskList list) {
 		if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {
 			throw new IllegalArgumentException("Invalid name.");

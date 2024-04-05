@@ -6,7 +6,7 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
  * @author Brendan_Viscount
  * @param <E>
  */
-public class TaskList<E extends Comparable<E>> extends AbstractTaskList implements Comparable<E> {
+public class TaskList extends AbstractTaskList implements Comparable<TaskList> {
 
 	/**
 	 * Task List constructor
@@ -34,17 +34,13 @@ public class TaskList<E extends Comparable<E>> extends AbstractTaskList implemen
 	 * @param task list to compare to
 	 * @return integer representation of comparison -1 for before, 0 for equals, 1 for after
 	 */
-	public int compareTo(E list) {
+	public int compareTo(TaskList list) {
 		if (list == null) {
 	        throw new NullPointerException("Cannot compare to null");
 	    }
-
-	    if (list instanceof AbstractTaskList) {
-	        AbstractTaskList otherList = (AbstractTaskList) list;
-	        return this.getTaskListName().compareTo(otherList.getTaskListName());
-	    } else {
-	        throw new ClassCastException("Cannot cast " + list.getClass() + " to AbstractTaskList");
-	    }
+	    AbstractTaskList otherList = (AbstractTaskList) list;
+	    return this.getTaskListName().compareTo(otherList.getTaskListName());
+	    
 	}
 
 }
