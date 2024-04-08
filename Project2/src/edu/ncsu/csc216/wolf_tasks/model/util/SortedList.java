@@ -82,7 +82,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	/**
 	 * Checks parameter index
 	 * @param index to check
-	 * @throws IllegalArgumentException if index is out of the bounds of the list
+	 * @throws IndexOutOfBoundsException if index is out of the bounds of the list
 	 */
 	private void checkIndex(int index) {
 		if(index < 0 || index >= size) {
@@ -112,7 +112,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 * Returns element in parameter index
 	 * @param index of element to return
 	 * @return element in parameter index
-	 * @throws IllegalArgumentException if index is out of the bounds of the list
+	 * @throws IndexOutOfBoundsException if index is out of the bounds of the list
 	 */
 	@Override
 	public E get(int index) {

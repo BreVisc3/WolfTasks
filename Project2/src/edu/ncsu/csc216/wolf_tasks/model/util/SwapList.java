@@ -70,36 +70,36 @@ public class SwapList<E> implements ISwapList<E> {
 		checkIndex(index);
 		
 		if (index == 0) {
-			throw new IndexOutOfBoundsException("Invalid index.");
 	    }
-		
-		E value = list[index];
-		list[index] = list[index - 1];
-		list[index - 1] = value;
+		else {
+			E value = list[index];
+			list[index] = list[index - 1];
+			list[index - 1] = value;
+		}
 	}
 
 	/**
 	 * Move an element down in the list
 	 * @param index of element to move
-	 * @throws IllegalArgumentException if index is negative or out of bounds of array
+	 * @throws IndexOutOfBoundsException if index is negative or out of bounds of array
 	 */
 	@Override
 	public void moveDown(int index) {
 		checkIndex(index);
 		
 		if (index == size - 1) {
-	        throw new IndexOutOfBoundsException("Invalid index.");
 	    }
-		
-		E value = list[index];
-		list[index] = list[index + 1];
-		list[index + 1] = value;
+		else {
+			E value = list[index];
+			list[index] = list[index + 1];
+			list[index + 1] = value;
+		}
 	}
 
 	/**
 	 * Move an element to the front of the list
 	 * @param index of element to move
-	 * @throws IllegalArgumentException if index is negative or out of bounds of array
+	 * @throws IndexOutOfBoundsException if index is negative or out of bounds of array
 	 */
 	@Override
 	public void moveToFront(int index) {
@@ -115,7 +115,7 @@ public class SwapList<E> implements ISwapList<E> {
 	/**
 	 * Move an element to the back of the list
 	 * @param index of element to move
-	 * @throws IllegalArgumentException if index is negative or out of bounds of array
+	 * @throws IndexOutOfBoundsException if index is negative or out of bounds of array
 	 */
 	@Override
 	public void moveToBack(int index) {
@@ -132,7 +132,7 @@ public class SwapList<E> implements ISwapList<E> {
 	 * Returns the element in the parameter index
 	 * @param index of element to get
 	 * @return the element in parameter index
-	 * @throws IllegalArgumentExcpetion if index is negative or out of bounds of the array
+	 * @throws IndexOutOfBoundsExcpetion if index is negative or out of bounds of the array
 	 */
 	@Override
 	public E get(int index) {
