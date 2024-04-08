@@ -167,11 +167,11 @@ public class SwapList<E> implements ISwapList<E> {
 	/**
 	 * Checks the contents of parameter index
 	 * @param index to check
-	 * @throws IllegalArgumentException if index is out of the bounds of the array
+	 * @throws IndexOutOfBoundsException if index is out of the bounds of the array
 	 */
 	private void checkIndex(int index) {
 		if(index < 0 || index >= size) {
-			throw new IllegalArgumentException("Invalid index.");
+			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 	}
 	

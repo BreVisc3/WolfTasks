@@ -110,11 +110,11 @@ public class SwapListTest {
 	@Test
 	public void testInvalidRemove() {
 		
-		Exception e1 = assertThrows(IllegalArgumentException.class,
+		Exception e1 = assertThrows(IndexOutOfBoundsException.class,
 				() -> list.remove(-1));
 		assertEquals(e1.getMessage(), "Invalid index.");
 		
-		Exception e2 = assertThrows(IllegalArgumentException.class,
+		Exception e2 = assertThrows(IndexOutOfBoundsException.class,
 				() -> list.remove(10));
 		assertEquals(e2.getMessage(), "Invalid index.");
 		

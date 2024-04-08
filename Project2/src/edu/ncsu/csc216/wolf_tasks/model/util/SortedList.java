@@ -86,7 +86,7 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 	 */
 	private void checkIndex(int index) {
 		if(index < 0 || index >= size) {
-			throw new IllegalArgumentException("Invalid index.");
+			throw new IndexOutOfBoundsException("Invalid index.");
 		}
 	}
 
