@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class ActiveTaskListTest {
 
-ActiveTaskList list;
+public ActiveTaskList list;
 	
 	/**
 	 * Prepare list for testing
@@ -131,9 +131,9 @@ ActiveTaskList list;
 			fail("Unexpected exception converting list to information array");
 		}
 		
-		assertEquals(info[0][0], "");
+		assertEquals(info[0][0], "Active Tasks");
 		assertEquals(info[0][1], "Homework");
-		assertEquals(info[3][0], "");
+		assertEquals(info[3][0], "Active Tasks");
 		assertEquals(info[3][1], "Homework");
 	}
 	

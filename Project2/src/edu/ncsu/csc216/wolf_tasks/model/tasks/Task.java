@@ -95,6 +95,7 @@ public class Task implements Cloneable {
 	 * @return boolean true if task is active, false if not
 	 */
 	public boolean isActive() {
+		
 		return active;
 	}
 
@@ -103,6 +104,7 @@ public class Task implements Cloneable {
 	 * @param active boolean value to set to
 	 */
 	public void setActive(boolean active) {
+		
 		this.active = active;
 	}
 	
