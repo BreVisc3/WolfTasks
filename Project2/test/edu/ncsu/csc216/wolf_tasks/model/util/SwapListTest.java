@@ -138,9 +138,9 @@ public class SwapListTest {
 		assertEquals("dog", list.get(1));
 		assertEquals("apple", list.get(2));
 		
-		Exception e1 = assertThrows(IllegalArgumentException.class,
+		Exception e1 = assertThrows(IndexOutOfBoundsException.class,
 				() -> list.moveUp(0));
-		assertEquals(e1.getMessage(), "Cannot move up the first element.");
+		assertEquals(e1.getMessage(), "Invalid index.");
 		
 	}
 	
@@ -161,6 +161,10 @@ public class SwapListTest {
 		list.moveDown(0);
 		assertEquals("dog", list.get(0));
 		assertEquals("apple", list.get(1));
+		
+		Exception e1 = assertThrows(IndexOutOfBoundsException.class,
+				() -> list.moveDown(list.size() - 1));
+		assertEquals(e1.getMessage(), "Invalid index.");
 	}
 	
 	/**

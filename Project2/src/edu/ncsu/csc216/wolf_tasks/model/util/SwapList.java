@@ -70,7 +70,7 @@ public class SwapList<E> implements ISwapList<E> {
 		checkIndex(index);
 		
 		if (index == 0) {
-	        throw new IllegalArgumentException("Cannot move up the first element.");
+			throw new IndexOutOfBoundsException("Invalid index.");
 	    }
 		
 		E value = list[index];
@@ -88,7 +88,7 @@ public class SwapList<E> implements ISwapList<E> {
 		checkIndex(index);
 		
 		if (index == size - 1) {
-	        throw new IllegalArgumentException("Cannot move down the last element.");
+	        throw new IndexOutOfBoundsException("Invalid index.");
 	    }
 		
 		E value = list[index];
