@@ -178,14 +178,15 @@ public class Notebook {
 	            throw new IllegalArgumentException("Duplicate task list name.");
 	        }
 	    }
-	    if (currentIndex != -1) {
-	        taskLists.remove(currentIndex);
+	    if (currentIndex != -1) {///////////////////
+	        AbstractTaskList temp = taskLists.remove(currentIndex);
+	        temp.setTaskListName(name);
+	        currentTaskList = temp;
+	        setChanged(true);
+	        
 	    } else {
 	        throw new IllegalArgumentException("Current task list not found.");
 	    }
-	    currentTaskList.setTaskListName(name);
-	    taskLists.add((TaskList) currentTaskList);
-	    setChanged(true);
 	}
 	
 	/**
@@ -208,7 +209,7 @@ public class Notebook {
 	    }
 	    if (indexToRemove != -1) {
 	        taskLists.remove(indexToRemove);
-	        activeTaskList = currentTaskList;
+	        currentTaskList = activeTaskList;
 	        isChanged = true;
 	    } else {
 	        throw new IllegalArgumentException("Task list not found in the notebook.");
