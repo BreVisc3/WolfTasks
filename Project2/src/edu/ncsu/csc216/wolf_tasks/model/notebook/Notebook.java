@@ -244,13 +244,10 @@ public class Notebook {
 	 */
 	public void editTask(int index, String name, String description, boolean isRecurring, boolean isActive) {
 		if(currentTaskList instanceof TaskList) {
-			
-			if(currentTaskList.getTask(index).isActive()) {
-				getActiveTaskList();
-			}
 			Task task = new Task(name, description, isRecurring, isActive);
 			currentTaskList.removeTask(index);
 			currentTaskList.addTask(task);
+			getActiveTaskList();
 		}
 	}
 }
