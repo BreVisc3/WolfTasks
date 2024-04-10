@@ -15,7 +15,7 @@ public abstract class AbstractTaskList {
 	/** Number of completed tasks */
 	private int completedCount;
 	/** SwapList for functionality */
-	ISwapList<Task> tasks = new SwapList<>();
+	ISwapList<Task> tasks;
 	 
 	 
 	
@@ -23,10 +23,11 @@ public abstract class AbstractTaskList {
 	 * AbstractTaskList Constructor
 	 */
 	public AbstractTaskList(String name, int numCompleted) {
+		tasks = new SwapList<>();
+		setTaskListName(name);
 		if(numCompleted < 0) {
 			throw new IllegalArgumentException("Invalid completed count.");
 		}
-		setTaskListName(name);
 		completedCount = numCompleted;
 	}
 	
