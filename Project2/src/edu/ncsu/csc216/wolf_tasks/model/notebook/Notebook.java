@@ -174,7 +174,7 @@ public class Notebook {
 	            currentIndex = i;
 	        }
 	        if (name.equalsIgnoreCase(((AbstractTaskList) taskLists.get(i)).getTaskListName())) {
-	            throw new IllegalArgumentException("Duplicate task list name.");
+	            throw new IllegalArgumentException("Invalid name.");
 	        }
 	    }
 	    if (currentIndex != -1) {///////////////////

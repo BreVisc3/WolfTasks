@@ -147,17 +147,17 @@ public class NotebookTest {
     	notebook.setCurrentTaskList("List");
         Exception e = assertThrows(IllegalArgumentException.class, 
         		() -> notebook.editTaskList("Active Tasks"));
-        assertEquals("The Active Tasks list may not be edited.", e.getMessage());
+        assertEquals("Invalid name.", e.getMessage());
 
         notebook.setCurrentTaskList("List");
         e = assertThrows(IllegalArgumentException.class,
         		() -> notebook.editTaskList("Work"));
         
-        assertEquals("Duplicate task list name.", e.getMessage());
+        assertEquals("Invalid name.", e.getMessage());
 
         e = assertThrows(IllegalArgumentException.class, 
         		() -> notebook.editTaskList("Active Tasks"));
-        assertEquals("The Active Tasks list may not be edited.", e.getMessage());
+        assertEquals("Invalid name.", e.getMessage());
     }
 
 }
