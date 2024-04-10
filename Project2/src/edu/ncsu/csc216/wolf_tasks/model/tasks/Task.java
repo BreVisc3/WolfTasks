@@ -25,6 +25,10 @@ public class Task implements Cloneable {
 	
 	/**
 	 * Task constructor
+	 * @param name of task
+	 * @param description of task
+	 * @param recurring boolean if task recurs
+	 * @param active boolean if task is active
 	 */
 	public Task(String name, String description, boolean recurring, boolean active) {
 		setTaskName(name);
@@ -160,7 +164,7 @@ public class Task implements Cloneable {
 	/**
 	 * Create a copy of the task
 	 * @return a copy of the task
-	 * @throws CloneNotSupportedException 
+	 * @throws CloneNotSupportedException if there is no task to clone
 	 */
 	public Object clone() throws CloneNotSupportedException {
 		if(taskLists == null || taskLists.size() == 0) {
@@ -171,7 +175,7 @@ public class Task implements Cloneable {
 	
 	/**
 	 * Returns a string representation of the task
-	 * @Return the task written as a string
+	 * @return String the task written as a string
 	 */
 	public String toString() {
 		String[] description = getTaskDescription().split("\n");

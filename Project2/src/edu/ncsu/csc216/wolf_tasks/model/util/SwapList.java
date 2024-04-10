@@ -69,13 +69,11 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveUp(int index) {
 		checkIndex(index);
 		
-		if (index == 0) {
-	    }
-		else {
+		if (index != 0) {
 			E value = list[index];
 			list[index] = list[index - 1];
 			list[index - 1] = value;
-		}
+	    }
 	}
 
 	/**
@@ -87,13 +85,11 @@ public class SwapList<E> implements ISwapList<E> {
 	public void moveDown(int index) {
 		checkIndex(index);
 		
-		if (index == size - 1) {
-	    }
-		else {
+		if (index != size - 1) {
 			E value = list[index];
 			list[index] = list[index + 1];
 			list[index + 1] = value;
-		}
+	    }
 	}
 
 	/**

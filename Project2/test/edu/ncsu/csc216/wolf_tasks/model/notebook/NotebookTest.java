@@ -17,6 +17,7 @@ import edu.ncsu.csc216.wolf_tasks.model.tasks.TaskList;
  */
 public class NotebookTest {
 	
+	/** Testing notebook */
 	Notebook notebook;
 	
 	/**

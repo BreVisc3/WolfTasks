@@ -13,7 +13,6 @@ import edu.ncsu.csc216.wolf_tasks.model.util.SortedList;
  * Notebook class manages TaskLists on a larger scale
  * 
  * @author Brendan_Viscount
- * @param <E>
  */
 public class Notebook {
 
@@ -44,7 +43,6 @@ public class Notebook {
 	 * @param filename to save notebook contents to
 	 */
 	public void saveNotebook(File filename) {
-		
 		NotebookWriter.writeNotebookFile(filename, getNotebookName(), taskLists);
 		isChanged = false;
 	}
@@ -62,7 +60,7 @@ public class Notebook {
 	 * @param name to set for the notebook
 	 */
 	private void setNotebookName(String name) {
-		if(name == null || name.isEmpty() || name == "Active Tasks") {
+		if(name == null || name.isEmpty() || "Active Tasks".equals(name)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
 		notebookName = name;
@@ -78,7 +76,7 @@ public class Notebook {
 	
 	/**
 	 * Sets the value of isChanged to parameter boolean
-	 * @param boolean value to set isChanged to
+	 * @param changed boolean value to set isChanged to
 	 */
 	public void setChanged(boolean changed) {
 		isChanged = changed;
@@ -86,7 +84,7 @@ public class Notebook {
 	
 	/**
 	 * Adds a task list to the notebook
-	 * @param task list to add
+	 * @param list to add
 	 */
 	public void addTaskList(TaskList list) {
 		if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {

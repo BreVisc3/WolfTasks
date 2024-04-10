@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class SortedListTest {
 	
+	/** Testing list */
 	SortedList<String> list;
 	
 	/**

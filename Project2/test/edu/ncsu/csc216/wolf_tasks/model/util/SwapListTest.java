@@ -7,8 +7,12 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Tests the functionality of SwapList
+ */
 public class SwapListTest {
 		
+	/** Testing list */
 	SwapList<String> list;
 	
 	/**

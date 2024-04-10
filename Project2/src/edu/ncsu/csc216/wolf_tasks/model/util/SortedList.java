@@ -134,6 +134,9 @@ public class SortedList<E extends Comparable<E>> implements ISortedList<E> {
 		return size;
 	}
 	
+	/**
+	 * ListNode inner class object provides necessary functionality for the linked SortedList
+	 */
 	public class ListNode {
 		
 		/** The information the ListNode index holds */

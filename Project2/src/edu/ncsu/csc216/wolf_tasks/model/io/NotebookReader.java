@@ -19,7 +19,7 @@ public class NotebookReader {
 	
 	/**
 	 * Reads Notebook information from File with parameter fileName
-	 * @param filename of File to read
+	 * @param fileName of File to read
 	 * @return Notebook of TaskLists from File
 	 * @throws IllegalArgumentException if file does not exist
 	 */
@@ -56,7 +56,7 @@ public class NotebookReader {
 	
 	/**
 	 * Processes the information in a TaskList
-	 * @param listName of TaskList to process
+	 * @param listInfo of TaskList to process
 	 * @return TaskList of tasks in the file
 	 */
 	private static TaskList processTaskList(String listInfo) {
@@ -81,7 +81,7 @@ public class NotebookReader {
 	/**
 	 * Processes Task information from String parameter
 	 * @param taskInfo String holds Task information
-	 * @param list 
+	 * @param list to add task to
 	 * @return a Task object with the information from parameter
 	 */
 	private static Task processTask(AbstractTaskList list, String taskInfo) {

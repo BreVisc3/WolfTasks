@@ -13,6 +13,7 @@ import org.junit.Test;
  */
 public class ActiveTaskListTest {
 
+/** Testing list */
 public ActiveTaskList list;
 	
 	/**

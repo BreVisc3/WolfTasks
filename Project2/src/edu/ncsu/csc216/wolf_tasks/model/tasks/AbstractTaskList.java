@@ -21,6 +21,8 @@ public abstract class AbstractTaskList {
 	
 	/**
 	 * AbstractTaskList Constructor
+	 * @param name of AbstractTaskList
+	 * @param numCompleted int number of completed tasks
 	 */
 	public AbstractTaskList(String name, int numCompleted) {
 		tasks = new SwapList<>();
@@ -41,7 +43,7 @@ public abstract class AbstractTaskList {
 
 	/**
 	 * Sets the name of the task list to the parameter
-	 * @param name to set for the task list
+	 * @param listName to set for the task list
 	 * @throws IllegalArgumentException if parameter listName is null or empty
 	 */
 	public void setTaskListName(String listName) {
@@ -102,7 +104,7 @@ public abstract class AbstractTaskList {
 	
 	/**
 	 * Sets a task to completed and adds task to completed list
-	 * @param Task to mark completed
+	 * @param task to mark completed
 	 */
 	public void completeTask(Task task) {
 		
@@ -114,6 +116,9 @@ public abstract class AbstractTaskList {
 		}
 		
 	}
-	
+	/**
+	 * Returns String[] of taskList info
+	 * @return String[] of taskList info
+	 */
 	public abstract String[][] getTasksAsArray();
 }

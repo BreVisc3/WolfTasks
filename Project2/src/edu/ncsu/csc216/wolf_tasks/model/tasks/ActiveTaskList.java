@@ -7,11 +7,11 @@ package edu.ncsu.csc216.wolf_tasks.model.tasks;
  */
 public class ActiveTaskList extends AbstractTaskList {
 	
+	/** Default ActiveTaskList name */
 	public static final String ACTIVE_TASKS_NAME = "Active Tasks";
 
 	/**
 	 * ActiveTaskList constructor
-	 * @param numCompleted
 	 */
 	public ActiveTaskList() {
 		super(ACTIVE_TASKS_NAME, 0);
@@ -35,7 +35,7 @@ public class ActiveTaskList extends AbstractTaskList {
 
 	/**
 	 * Add parameter task to the active list
-	 * @param Task to add
+	 * @param task to add
 	 * @throws IllegalArgumentException if task parameter is not active
 	 */
 	@Override
