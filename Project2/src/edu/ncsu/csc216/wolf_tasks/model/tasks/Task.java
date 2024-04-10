@@ -153,8 +153,6 @@ public class Task implements Cloneable {
 		for(int i = 0; i < taskLists.size(); i++) {
 			taskLists.get(i).completeTask(this);
 		}
-		taskLists = new SwapList<AbstractTaskList>();
-		
 		if(recurring) {
 			for(int i = 0; i < taskLists.size(); i++) {
 				taskLists.get(i).addTask(this);
