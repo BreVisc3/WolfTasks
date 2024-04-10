@@ -125,7 +125,7 @@ public class Notebook {
 		AbstractTaskList temp = new ActiveTaskList();
 		for(int i = 0; i < taskLists.size(); i++) {
 			for(int j = 0; j < (taskLists.get(i)).getTasks().size(); j++) {
-				if(taskLists.get(i).getTasks().get(j).isActive()) {
+				if(taskLists.get(i).getTask(j).isActive()) {
 					temp.addTask(taskLists.get(i).getTasks().get(j));
 				}
 			}
@@ -187,6 +187,7 @@ public class Notebook {
 	        temp.setTaskListName(name);
 	        taskLists.add(temp);
 	        currentTaskList = temp;
+	        getActiveTaskList();
 	        setChanged(true);
 	        
 	    } else {
@@ -215,12 +216,11 @@ public class Notebook {
 	    if (indexToRemove != -1) {
 	        taskLists.remove(indexToRemove);
 	        currentTaskList = activeTaskList;
+	        getActiveTaskList();
 	        isChanged = true;
 	    } else {
 	        throw new IllegalArgumentException("Task list not found in the notebook.");
 	    }
-	    
-	    getActiveTaskList();
 		
 	}
 	
@@ -231,10 +231,9 @@ public class Notebook {
 	public void addTask(Task task) {
 		if(currentTaskList instanceof TaskList) {
 			currentTaskList.addTask(task);
-			getActiveTaskList();
 			isChanged = true;
 		}
-		
+		getActiveTaskList();
 	}
 	
 	/**
