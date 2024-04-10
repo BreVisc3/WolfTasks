@@ -217,6 +217,8 @@ public class Notebook {
 	    } else {
 	        throw new IllegalArgumentException("Task list not found in the notebook.");
 	    }
+	    
+	    getActiveTaskList();
 		
 	}
 	
