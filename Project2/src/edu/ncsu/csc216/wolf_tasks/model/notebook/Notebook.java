@@ -166,7 +166,7 @@ public class Notebook {
 	public void editTaskList(String name) {
 		
 		if (currentTaskList instanceof ActiveTaskList || "Active Tasks".equalsIgnoreCase(name)) {
-	        throw new IllegalArgumentException("The Active Tasks list may not be edited.");
+	        throw new IllegalArgumentException("Invalid name.");
 	    }
 	    int currentIndex = -1;
 	    for (int i = 0; i < taskLists.size(); i++) {
