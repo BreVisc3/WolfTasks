@@ -94,6 +94,7 @@ public class Notebook {
 		
 		taskLists.add(list);
 		currentTaskList = list;
+		getActiveTaskList();
 		isChanged = true;
 	}
 	
@@ -124,8 +125,8 @@ public class Notebook {
 		AbstractTaskList temp = new ActiveTaskList();
 		for(int i = 0; i < taskLists.size(); i++) {
 			for(int j = 0; j < (taskLists.get(i)).getTasks().size(); j++) {
-				if((taskLists.get(i)).getTasks().get(j).isActive()) {
-					temp.addTask((taskLists.get(i)).getTasks().get(j));
+				if(taskLists.get(i).getTasks().get(j).isActive()) {
+					temp.addTask(taskLists.get(i).getTasks().get(j));
 				}
 			}
 		}

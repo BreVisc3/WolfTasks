@@ -47,7 +47,7 @@ public class NotebookReader {
                 notebook.addTaskList(processTaskList(allReader.next()));
             }
             allReader.close();
-
+            
             return notebook;
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException("Unable to load file: File not found.");

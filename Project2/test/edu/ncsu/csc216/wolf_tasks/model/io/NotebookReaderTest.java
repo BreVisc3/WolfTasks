@@ -29,6 +29,8 @@ public class NotebookReaderTest {
 			
 			assertEquals(4, notebook.getTaskListsNames().length);
 			assertEquals("Notebook", notebook.getNotebookName());
+			
+			Notebook notebook1 = NotebookReader.readNotebookFile(new File("test-files/notebook1.txt"));
 		} catch(Exception e) {
 			fail("Unexpected exception thrown while reading file.");
 		}
