@@ -94,6 +94,7 @@ public class Notebook {
 		
 		taskLists.add(list);
 		currentTaskList = list;
+		isChanged = true;
 	}
 	
 	/**
@@ -250,9 +251,8 @@ public class Notebook {
 			currentTaskList.getTasks().get(index).setTaskDescription(description);
 			currentTaskList.getTasks().get(index).setActive(isActive);
 			currentTaskList.getTasks().get(index).setRecurring(isRecurring);
-			if(isActive) {
-				getActiveTaskList();
-			}
+			getActiveTaskList();
+			isChanged = true;
 		}
 	}
 }
