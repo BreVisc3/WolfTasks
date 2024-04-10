@@ -124,6 +124,17 @@ public class NotebookTest {
         assertTrue(notebook.getCurrentTaskList().getTask(0).isRecurring());
         assertFalse(notebook.getCurrentTaskList().getTask(0).isActive());
         assertTrue(notebook.isChanged());
+        
+        
+        Notebook notebook1 = new Notebook("Notebook");
+        TaskList list = new TaskList("TaskList1", 0);
+        notebook1.addTaskList(list);
+        list.addTask(new Task("Task1", "Task1Description", false, false));
+        list.addTask(new Task("Task2", "Task2Description", true, false));
+        list.addTask(new Task("Task3", "Task3Description", true, true));
+        list.addTask(new Task("Task4", "Task4Description", false, true));
+        notebook1.editTask(2, "Task5", "Task3Description", true, true);
+        assertEquals(list.getTasksAsArray()[2][1], "Task5");
     }
     
     /**
@@ -160,4 +171,5 @@ public class NotebookTest {
         assertEquals("Invalid name.", e.getMessage());
     }
 
+    
 }
