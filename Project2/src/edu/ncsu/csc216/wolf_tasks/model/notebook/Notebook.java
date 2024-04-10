@@ -173,13 +173,14 @@ public class Notebook {
 	        if (currentTaskList.equals(taskLists.get(i))) {
 	            currentIndex = i;
 	        }
-	        if (name.equalsIgnoreCase(((AbstractTaskList) taskLists.get(i)).getTaskListName())) {
+	        if (name.equalsIgnoreCase((taskLists.get(i)).getTaskListName())) {
 	            throw new IllegalArgumentException("Invalid name.");
 	        }
 	    }
 	    if (currentIndex != -1) {///////////////////
-	        AbstractTaskList temp = taskLists.remove(currentIndex);
+	        TaskList temp = taskLists.remove(currentIndex);
 	        temp.setTaskListName(name);
+	        taskLists.add(temp);
 	        currentTaskList = temp;
 	        setChanged(true);
 	        
