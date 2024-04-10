@@ -23,9 +23,10 @@ public class ActiveTaskList extends AbstractTaskList {
 	 */
 	@Override
 	public String[][] getTasksAsArray() {
-		String[][] info = new String[super.getTasks().size()][2];
-		for(int i = 0; i < super.getTasks().size(); i++) {
-			info[i][0] = ACTIVE_TASKS_NAME;
+		String[][] info = new String[getTasks().size()][2];
+		for(int i = 0; i < getTasks().size(); i++) {
+			info[i][0] = getTasks().get(i).getTaskListName();
+			//info[i][0] = ACTIVE_TASKS_NAME;
 			info[i][1] = tasks.get(i).getTaskName();
 		}
 		
@@ -43,7 +44,7 @@ public class ActiveTaskList extends AbstractTaskList {
 			throw new IllegalArgumentException("Cannot add task to Active Tasks.");
 		}
 		else {
-			tasks.add(task);
+			super.addTask(task);
 		}
 	}
 	
