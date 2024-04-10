@@ -34,7 +34,8 @@ public class Notebook {
 	public Notebook(String name) {
 		taskLists = new SortedList<TaskList>();
 		activeTaskList = new ActiveTaskList();
-		currentTaskList = new TaskList("Current Tasks", 0);
+		//currentTaskList = new TaskList("Current Tasks", 0);
+		currentTaskList = activeTaskList;
 		setNotebookName(name);
 		isChanged = true;
 	}
