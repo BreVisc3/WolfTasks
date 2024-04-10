@@ -122,9 +122,9 @@ public class Notebook {
 	private void getActiveTaskList() {
 		AbstractTaskList temp = new ActiveTaskList();
 		for(int i = 0; i < taskLists.size(); i++) {
-			for(int j = 0; j < ((AbstractTaskList)taskLists.get(i)).getTasks().size(); j++) {
-				if(((AbstractTaskList)taskLists.get(i)).getTasks().get(j).isActive()) {
-					temp.addTask(((AbstractTaskList)taskLists.get(i)).getTasks().get(j));
+			for(int j = 0; j < (taskLists.get(i)).getTasks().size(); j++) {
+				if((taskLists.get(i)).getTasks().get(j).isActive()) {
+					temp.addTask((taskLists.get(i)).getTasks().get(j));
 				}
 			}
 		}
@@ -226,10 +226,8 @@ public class Notebook {
 	 */
 	public void addTask(Task task) {
 		if(currentTaskList instanceof TaskList) {
-			if(task.isActive()) {
-				getActiveTaskList(); //WHAT
-			}
 			currentTaskList.addTask(task);
+			getActiveTaskList();
 			isChanged = true;
 		}
 		
