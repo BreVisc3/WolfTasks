@@ -65,7 +65,7 @@ public class NotebookTest {
 	@Test
 	public void testAddTaskList() {
 		
-		assertEquals(4, notebook.getTaskListsNames().length);
+		assertEquals(5, notebook.getTaskListsNames().length);
 		
 		Exception e1 = assertThrows(IllegalArgumentException.class,
 				() -> notebook.addTaskList(new TaskList("Active Tasks", 0)));
@@ -81,19 +81,19 @@ public class NotebookTest {
 	@Test
 	public void testRemoveTaskList() {
 		
-		assertEquals(4, notebook.getTaskListsNames().length);
+		assertEquals(5, notebook.getTaskListsNames().length);
 		
 		try {
 			notebook.removeTaskList();
-			assertEquals(3, notebook.getTaskListsNames().length);
+			assertEquals(4, notebook.getTaskListsNames().length);
 			
 			notebook.setCurrentTaskList("School");
 			notebook.removeTaskList();
-			assertEquals(2, notebook.getTaskListsNames().length);
+			assertEquals(3, notebook.getTaskListsNames().length);
 			
 			notebook.setCurrentTaskList("Work");
 			notebook.removeTaskList();
-			assertEquals(1, notebook.getTaskListsNames().length);
+			assertEquals(2, notebook.getTaskListsNames().length);
 			
 		} catch(Exception e) {
 			fail("Unexpected exception thrown removing valid index.");
@@ -147,7 +147,7 @@ public class NotebookTest {
     	notebook.setCurrentTaskList("List");
         Exception e = assertThrows(IllegalArgumentException.class, 
         		() -> notebook.editTaskList("Active Tasks"));
-        assertEquals("Invalid information.", e.getMessage());
+        assertEquals("The Active Tasks list may not be edited.", e.getMessage());
 
         notebook.setCurrentTaskList("List");
         e = assertThrows(IllegalArgumentException.class,
@@ -157,7 +157,7 @@ public class NotebookTest {
 
         e = assertThrows(IllegalArgumentException.class, 
         		() -> notebook.editTaskList("Active Tasks"));
-        assertEquals("Invalid information.", e.getMessage());
+        assertEquals("The Active Tasks list may not be edited.", e.getMessage());
     }
 
 }

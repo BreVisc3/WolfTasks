@@ -36,6 +36,7 @@ public class Notebook {
 		activeTaskList = new ActiveTaskList();
 		currentTaskList = new TaskList("Current Tasks", 0);
 		setNotebookName(name);
+		isChanged = true;
 	}
 	
 	/**
@@ -101,10 +102,10 @@ public class Notebook {
 	 */
 	public String[] getTaskListsNames() {
 		if(taskLists.size() != 0) {
-			String[] names = new String[taskLists.size()];
+			String[] names = new String[taskLists.size() + 1];
 			names[0] = "Active Tasks";
 			for(int i = 0; i < taskLists.size(); i++) {
-				names[i] = ((AbstractTaskList) taskLists.get(i)).getTaskListName(); 
+				names[i + 1] = ((AbstractTaskList) taskLists.get(i)).getTaskListName(); 
 			
 			}
 			
@@ -165,7 +166,7 @@ public class Notebook {
 	public void editTaskList(String name) {
 		
 		if (currentTaskList instanceof ActiveTaskList || "Active Tasks".equalsIgnoreCase(name)) {
-	        throw new IllegalArgumentException("Invalid information.");
+	        throw new IllegalArgumentException("The Active Tasks list may not be edited.");
 	    }
 	    int currentIndex = -1;
 	    for (int i = 0; i < taskLists.size(); i++) {
