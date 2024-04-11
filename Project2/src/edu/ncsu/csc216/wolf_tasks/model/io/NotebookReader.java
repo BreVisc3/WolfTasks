@@ -68,27 +68,28 @@ public class NotebookReader {
 	    
 	    if(split.length != 2) {
 	    	listReader.close();
-	    	throw new IllegalArgumentException("Unable to load file.");
-	    }
-	    
-	    String listName = split[0];
-	    String count = split[1];
-	    
-	    if(count == null || count.isEmpty() || Integer.parseInt(count) < 0 || listName == null || listName.isEmpty()) {
-	    	listReader.close();
 	    	return null;
 	    }
 	    else {
-		    TaskList list = new TaskList(listName, Integer.parseInt(count));
-	
-		    listReader.useDelimiter("\\r?\\n?[*]");
-	
-		    while (listReader.hasNext()) {
-		        list.addTask(processTask(list, listReader.next()));
+		    String listName = split[0];
+		    String count = split[1];
+		    
+		    if(count == null || count.isEmpty() || Integer.parseInt(count) < 0 || listName == null || listName.isEmpty()) {
+		    	listReader.close();
+		    	return null;
 		    }
-		    listReader.close();
-	
-		    return list;
+		    else {
+			    TaskList list = new TaskList(listName, Integer.parseInt(count));
+		
+			    listReader.useDelimiter("\\r?\\n?[*]");
+		
+			    while (listReader.hasNext()) {
+			        list.addTask(processTask(list, listReader.next()));
+			    }
+			    listReader.close();
+		
+			    return list;
+		    }
 	    }
 	}
 	
@@ -112,23 +113,24 @@ public class NotebookReader {
 	    if(name == null || name.isEmpty()) {
 	    	taskScanner.close();
 	    	firstScanner.close();
-	    	throw new IllegalArgumentException("Unable to load file.");
+	    	return null;
 	    }
-
-	    boolean recurring = false;
-	    boolean active = false;
-
-	    while (firstScanner.hasNext()) {
-	        String token = firstScanner.next().trim();
-	        if ("recurring".equalsIgnoreCase(token)) {
-	            recurring = true;
-	        } else if ("active".equalsIgnoreCase(token)) {
-	            active = true;
-	        }
+	    else {
+		    boolean recurring = false;
+		    boolean active = false;
+	
+		    while (firstScanner.hasNext()) {
+		        String token = firstScanner.next().trim();
+		        if ("recurring".equalsIgnoreCase(token)) {
+		            recurring = true;
+		        } else if ("active".equalsIgnoreCase(token)) {
+		            active = true;
+		        }
+		    }
+		    firstScanner.close();
+		    taskScanner.close();
+	
+		    return new Task(name, description.trim(), recurring, active);
 	    }
-	    firstScanner.close();
-	    taskScanner.close();
-
-	    return new Task(name, description.trim(), recurring, active);
     }
 }
