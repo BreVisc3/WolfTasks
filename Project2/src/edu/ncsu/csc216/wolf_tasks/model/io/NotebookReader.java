@@ -47,7 +47,7 @@ public class NotebookReader {
 	         header = header.substring(1).trim();
 	         Notebook notebook = new Notebook(header);
 	         try {
-		         while (allReader.hasNextLine()) {
+		         while (allReader.hasNext()) {
 		             notebook.addTaskList(processTaskList(allReader.next()));
 		         }
 	         allReader.close();
@@ -107,7 +107,10 @@ public class NotebookReader {
 		Scanner taskScanner = new Scanner(taskInfo);
 	    taskScanner.useDelimiter("&!@");
 	    String first = taskScanner.nextLine();
-	    String description = taskScanner.next();
+	    String description = "";
+	    if(taskScanner.hasNext()) {
+	    	description = taskScanner.next();
+	    }
 	    
 	    Scanner firstScanner = new Scanner(first);
 	    firstScanner.useDelimiter(",");
