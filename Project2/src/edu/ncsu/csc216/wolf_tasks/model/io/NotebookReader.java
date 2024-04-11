@@ -74,19 +74,20 @@ public class NotebookReader {
 	    
 	    if(count == null || count.isEmpty() || Integer.parseInt(count) < 0 || listName == null || listName.isEmpty()) {
 	    	listReader.close();
-	    	throw new IllegalArgumentException("Unable to load file.");
+	    	return null;
 	    }
-	    
-	    TaskList list = new TaskList(listName, Integer.parseInt(count));
-
-	    listReader.useDelimiter("\\r?\\n?[*]");
-
-	    while (listReader.hasNext()) {
-	        list.addTask(processTask(list, listReader.next()));
+	    else {
+		    TaskList list = new TaskList(listName, Integer.parseInt(count));
+	
+		    listReader.useDelimiter("\\r?\\n?[*]");
+	
+		    while (listReader.hasNext()) {
+		        list.addTask(processTask(list, listReader.next()));
+		    }
+		    listReader.close();
+	
+		    return list;
 	    }
-	    listReader.close();
-
-	    return list;
 	}
 	
 	/**
