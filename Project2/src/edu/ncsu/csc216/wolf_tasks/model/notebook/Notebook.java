@@ -126,7 +126,7 @@ public class Notebook {
 		for(int i = 0; i < taskLists.size(); i++) {
 			for(int j = 0; j < (taskLists.get(i)).getTasks().size(); j++) {
 				if(taskLists.get(i).getTask(j).isActive()) {
-					temp.addTask(taskLists.get(i).getTasks().get(j));
+					temp.addTask(taskLists.get(i).getTask(j));
 				}
 			}
 		}
