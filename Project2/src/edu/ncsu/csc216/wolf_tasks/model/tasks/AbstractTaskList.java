@@ -112,6 +112,7 @@ public abstract class AbstractTaskList {
 			if(tasks.get(i) == task) {
 				removeTask(i);
 				completedCount++;
+				break;
 			}
 		}
 		
