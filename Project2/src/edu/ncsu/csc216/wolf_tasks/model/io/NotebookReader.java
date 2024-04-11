@@ -78,7 +78,7 @@ public class NotebookReader {
 		    
 		    if(count == null || count.isEmpty() || Integer.parseInt(count) < 0 || listName == null || listName.isEmpty()) {
 		    	listReader.close();
-		    	return null;
+		    	throw new IllegalArgumentException("Unable to load file.");
 		    }
 		    else {
 			    TaskList list = new TaskList(listName, Integer.parseInt(count));
@@ -115,7 +115,7 @@ public class NotebookReader {
 	    if(name == null || name.isEmpty()) {
 	    	taskScanner.close();
 	    	firstScanner.close();
-	    	return null;
+	    	throw new IllegalArgumentException("Unable to load file.");
 	    }
 	    else {
 		    boolean recurring = false;
