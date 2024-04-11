@@ -165,20 +165,6 @@ public class Task implements Cloneable {
 		} catch (CloneNotSupportedException e) {
 			e.printStackTrace();
 		}
-		/*
-		for(int i = 0; i < taskLists.size(); i++) {
-			taskLists.get(i).completeTask(this);
-		}
-		if(recurring) {
-			for(int i = 0; i < taskLists.size(); i++) {
-				try {
-					taskLists.get(i).addTask((Task) this.clone());
-				} catch (CloneNotSupportedException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		*/
 	}
 	
 	/**
