@@ -91,13 +91,14 @@ public class Notebook {
 		if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {
 			throw new IllegalArgumentException("Invalid name.");
 		}
-		
-		taskLists.add(list);
-		
-		
-		currentTaskList = list;
-		getActiveTaskList();
-		isChanged = true;
+		if(list != null) { 
+			taskLists.add(list);
+			
+			
+			currentTaskList = list;
+			getActiveTaskList();
+			isChanged = true;
+		}
 	}
 	
 	/**
