@@ -196,6 +196,7 @@ public class WolfTasksGUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Unable to load file.");
 			} catch (IllegalStateException ise) {
 				//ignore the exception
+				ise.printStackTrace();
 			}
 		} else if (e.getSource() == itemSave) {
 			//Save current service group and incidents
@@ -205,6 +206,7 @@ public class WolfTasksGUI extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "Unable to save file.");
 			} catch (IllegalStateException exp) {
 				//Don't do anything - user canceled (or error)
+				exp.printStackTrace();
 			}
 		} else if (e.getSource() == itemQuit) {
 			if (notebook != null && notebook.isChanged()) {
@@ -216,6 +218,7 @@ public class WolfTasksGUI extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, "Unable to save file.");
 				} catch (IllegalStateException exp) {
 					//Don't do anything - user canceled (or error)
+					exp.printStackTrace();
 				}
 			} else {
 				System.exit(0);
