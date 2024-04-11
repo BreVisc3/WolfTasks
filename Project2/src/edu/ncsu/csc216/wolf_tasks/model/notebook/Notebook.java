@@ -111,7 +111,7 @@ public class Notebook {
 			String[] names = new String[taskLists.size() + 1];
 			names[0] = "Active Tasks";
 			for(int i = 0; i < taskLists.size(); i++) {
-				names[i + 1] = (taskLists.get(i)).getTaskListName(); 
+				names[i + 1] = taskLists.get(i).getTaskListName(); 
 			
 			}
 			
@@ -183,7 +183,7 @@ public class Notebook {
 	        if (currentTaskList.equals(taskLists.get(i))) {
 	            currentIndex = i;
 	        }
-	        if (name.equalsIgnoreCase((taskLists.get(i)).getTaskListName())) {
+	        if (name.equalsIgnoreCase(taskLists.get(i).getTaskListName())) {
 	            throw new IllegalArgumentException("Invalid name.");
 	        }
 	    }
