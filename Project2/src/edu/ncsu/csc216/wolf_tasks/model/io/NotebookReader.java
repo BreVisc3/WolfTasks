@@ -24,34 +24,36 @@ public class NotebookReader {
 	 * @throws IllegalArgumentException if file does not exist
 	 */
 	public static Notebook readNotebookFile(File fileName) {
+		StringBuilder allInfo;
 		try {
             Scanner fileReader = new Scanner(fileName);
-            StringBuilder allInfo = new StringBuilder();
+            allInfo = new StringBuilder();
             while (fileReader.hasNextLine()) {
                 allInfo.append(fileReader.nextLine()).append("\n");
             }
             fileReader.close();
-
-            Scanner allReader = new Scanner(allInfo.toString());
-            allReader.useDelimiter("\\n[#]");
-
-            String header = allReader.next();
-            if (!header.startsWith("!")) {
-                allReader.close();
-                throw new IllegalArgumentException("Unable to load file.");
-            }
-            header = header.substring(1).trim();
-            Notebook notebook = new Notebook(header);
-            
-            while (allReader.hasNextLine()) {
-                notebook.addTaskList(processTaskList(allReader.next()));
-            }
-            allReader.close();
-            
-            return notebook;
         } catch (FileNotFoundException e) {
-            throw new IllegalArgumentException("Unable to load file: File not found.");
+            throw new IllegalArgumentException("Unable to load file.");
         }
+		 Scanner allReader = new Scanner(allInfo.toString());
+         allReader.useDelimiter("\\n[#]");
+
+         String header = allReader.next();
+         if (!header.startsWith("!")) {
+             allReader.close();
+         }
+         else {
+	         header = header.substring(1).trim();
+	         Notebook notebook = new Notebook(header);
+	         
+	         while (allReader.hasNextLine()) {
+	             notebook.addTaskList(processTaskList(allReader.next()));
+	         }
+	         allReader.close();
+	         
+	         return notebook;
+         }
+         return null;
 	}
 	
 	/**
