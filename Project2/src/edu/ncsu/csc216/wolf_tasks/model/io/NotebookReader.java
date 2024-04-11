@@ -66,6 +66,11 @@ public class NotebookReader {
 	    String listName = split[0];
 	    String count = split[1];
 	    
+	    if(count == null || count.isEmpty() || Integer.parseInt(count) < 0 || listName == null || listName.isEmpty()) {
+	    	listReader.close();
+	    	throw new IllegalArgumentException("Unable to load file.");
+	    }
+	    
 	    TaskList list = new TaskList(listName, Integer.parseInt(count));
 
 	    listReader.useDelimiter("\\r?\\n?[*]");
@@ -94,6 +99,12 @@ public class NotebookReader {
 	    firstScanner.useDelimiter(",");
 
 	    String name = firstScanner.next().substring(1).trim(); 
+	    
+	    if(name == null || name.isEmpty()) {
+	    	taskScanner.close();
+	    	firstScanner.close();
+	    	throw new IllegalArgumentException("Unable to load file.");
+	    }
 
 	    boolean recurring = false;
 	    boolean active = false;

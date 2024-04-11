@@ -119,7 +119,7 @@ public class Task implements Cloneable {
 	public String getTaskListName() {
 		if(taskLists == null || taskLists.size() == 0) {
 			return "";
-		}
+		} 
 		return taskLists.get(0).getTaskListName();
 		
 	}
