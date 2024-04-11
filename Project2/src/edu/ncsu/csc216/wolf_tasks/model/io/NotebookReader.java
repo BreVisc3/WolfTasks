@@ -41,6 +41,7 @@ public class NotebookReader {
          String header = allReader.next();
          if (!header.startsWith("!")) {
              allReader.close();
+             throw new IllegalArgumentException("Unable to load file.");
          }
          else {
 	         header = header.substring(1).trim();
