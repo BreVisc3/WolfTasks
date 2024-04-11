@@ -107,7 +107,7 @@ public abstract class AbstractTaskList {
 	 * @param task to mark completed
 	 */
 	public void completeTask(Task task) {
-		
+	
 		for(int i = 0; i < tasks.size(); i++) {
 			if(tasks.get(i) == task) {
 				removeTask(i);

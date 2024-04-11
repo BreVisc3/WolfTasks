@@ -151,7 +151,7 @@ public class Task implements Cloneable {
 	public void completeTask() {
 		
 		for(int i = 0; i < taskLists.size(); i++) {
-			taskLists.get(0).completeTask(this);
+			taskLists.get(i).completeTask(this);
 		}
 		if(recurring) {
 			for(int i = 0; i < taskLists.size(); i++) {
