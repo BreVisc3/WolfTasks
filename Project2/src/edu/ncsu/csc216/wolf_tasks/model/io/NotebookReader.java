@@ -86,11 +86,14 @@ public class NotebookReader {
 			    TaskList list = new TaskList(listName, Integer.parseInt(count));
 		
 			    listReader.useDelimiter("\\r?\\n?[*]");
-		
-			    while (listReader.hasNext()) {
-			        list.addTask(processTask(list, listReader.next()));
+			    try {
+				    while (listReader.hasNext()) {
+				        list.addTask(processTask(list, listReader.next()));
+				    }
+				    listReader.close();
+			    } catch(Exception e) {
+			    	return list;
 			    }
-			    listReader.close();
 		
 			    return list;
 		    }
