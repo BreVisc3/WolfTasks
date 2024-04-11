@@ -124,14 +124,15 @@ public class Notebook {
 	 * Addresses the active task list of the notebook
 	 */
 	private void getActiveTaskList() {
-		activeTaskList = new ActiveTaskList();
+		AbstractTaskList temp = new TaskList("Active Tasks", activeTaskList.getCompletedCount());
 		for(int i = 0; i < taskLists.size(); i++) {
 			for(int j = 0; j < taskLists.get(i).getTasks().size(); j++) {
 				if(taskLists.get(i).getTask(j).isActive()) {
-					activeTaskList.addTask(taskLists.get(i).getTask(j));
+					temp.addTask(taskLists.get(i).getTask(j));
 				}
 			}
 		}
+		activeTaskList = temp;
 	}
 	
 	/**
