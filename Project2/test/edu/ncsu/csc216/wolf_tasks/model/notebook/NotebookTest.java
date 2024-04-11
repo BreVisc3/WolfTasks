@@ -170,28 +170,5 @@ public class NotebookTest {
         		() -> notebook.editTaskList("Active Tasks"));
         assertEquals("Invalid name.", e.getMessage());
     }
-
-    /**
-     * Recreates TStestScenario
-     */
-    /*
-    @Test
-    public void testNotebookTestScenario() {
-    	Notebook notebook1 = new Notebook("Notebook");
-        TaskList list = new TaskList("TaskList1", 0);
-        notebook1.addTaskList(list);
-        list.addTask(new Task("Task1", "Task1Description", true, true));
-        list.addTask(new Task("Task2", "Task2Description", true, false));
-        list.addTask(new Task("Task3", "Task3Description", false, true));
-        TaskList list2 = new TaskList("ATaskList", 0);
-        list2.addTask(new Task("Task4", "Task41Description", false, true));
-        list2.addTask(new Task("Task5", "Task5Description", false, false));
-        notebook1.addTaskList(list2);
-        notebook1.setCurrentTaskList("ATaskList");
-        notebook1.setCurrentTaskList("TaskList1");
-        notebook1.setCurrentTaskList("Active Tasks");
-        notebook1.getCurrentTaskList().getTask(0).completeTask();
-        assertEquals(notebook1.getCurrentTaskList().getTasksAsArray()[2][0], "TaskList1");
-    }*/
     
 }
