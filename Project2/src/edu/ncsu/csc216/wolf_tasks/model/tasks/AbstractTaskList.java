@@ -76,9 +76,11 @@ public abstract class AbstractTaskList {
 	 * @param task to add
 	 */
 	public void addTask(Task task) {
+		if(task != null) {
 		
-		tasks.add(task);
-		task.addTaskList(this);
+			tasks.add(task);
+			task.addTaskList(this);
+		}
 	}
 	
 	/**
