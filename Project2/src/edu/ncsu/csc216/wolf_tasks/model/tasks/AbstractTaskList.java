@@ -110,6 +110,7 @@ public abstract class AbstractTaskList {
 		
 		for(int i = 0; i < tasks.size(); i++) {
 			if(tasks.get(i) == task) {
+				task.setActive(false);////
 				removeTask(i);
 				completedCount++;
 			}
