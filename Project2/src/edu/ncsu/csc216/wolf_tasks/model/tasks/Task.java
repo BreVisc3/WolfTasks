@@ -173,6 +173,10 @@ public class Task implements Cloneable {
 		if(taskLists == null || taskLists.size() == 0) {
 			throw new CloneNotSupportedException("Cannot clone.");
 		}
+		Task task = new Task(taskName, taskDescription, recurring, active);
+		for(int i = 0; i < taskLists.size(); i++) {
+			task.addTaskList(taskLists.get(i));
+		}
 		return new Task(taskName, taskDescription, recurring, active);
 	}
 	

@@ -63,6 +63,12 @@ public class NotebookReader {
 		Scanner listReader = new Scanner(listInfo);
 	    String first = listReader.nextLine().trim();
 	    String[] split = first.split(",");
+	    
+	    if(split.length != 2) {
+	    	listReader.close();
+	    	throw new IllegalArgumentException("Unable to load file.");
+	    }
+	    
 	    String listName = split[0];
 	    String count = split[1];
 	    
