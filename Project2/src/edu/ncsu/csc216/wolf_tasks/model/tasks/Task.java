@@ -153,6 +153,22 @@ public class Task implements Cloneable {
 		for(int i = 0; i < taskLists.size(); i++) {
 			taskLists.get(i).completeTask(this);
 		}
+		
+		try {
+			Object taskObject = this.clone();
+			if(recurring) {
+				Task task = (Task) taskObject;
+				for(int i = 0; i < taskLists.size(); i++) {
+					taskLists.get(i).addTask(task);
+				}
+			}
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		/*
+		for(int i = 0; i < taskLists.size(); i++) {
+			taskLists.get(i).completeTask(this);
+		}
 		if(recurring) {
 			for(int i = 0; i < taskLists.size(); i++) {
 				try {
@@ -162,6 +178,7 @@ public class Task implements Cloneable {
 				}
 			}
 		}
+		*/
 	}
 	
 	/**
