@@ -151,6 +151,7 @@ public class Notebook {
 		}
 		
 		if(!flag) {
+			getActiveTaskList();
 			currentTaskList = activeTaskList;
 		}
 	}
