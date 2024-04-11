@@ -88,10 +88,11 @@ public class Notebook {
 	 * @param list to add
 	 */
 	public void addTaskList(TaskList list) {
-		if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {
-			throw new IllegalArgumentException("Invalid name.");
-		}
 		if(list != null) { 
+			if("Active Tasks".equals(list.getTaskListName()) || taskLists.contains(list)) {
+				throw new IllegalArgumentException("Invalid name.");
+			}
+			
 			taskLists.add(list);
 			
 			
