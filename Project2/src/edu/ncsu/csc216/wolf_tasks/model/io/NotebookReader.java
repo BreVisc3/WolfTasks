@@ -123,7 +123,8 @@ public class NotebookReader {
 	    if(name == null || name.isEmpty()) {
 	    	taskScanner.close();
 	    	firstScanner.close();
-	    	throw new IllegalArgumentException("Unable to load file.");
+	    	return null;
+	    	//throw new IllegalArgumentException("Unable to load file.");
 	    }
 	    else {
 		    boolean recurring = false;
