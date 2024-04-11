@@ -120,8 +120,12 @@ public class Task implements Cloneable {
 		if(taskLists == null || taskLists.size() == 0) {
 			return "";
 		}
-		
-		return taskLists.get(0).getTaskListName();
+		if(active) {
+			return "Active Tasks";
+		}
+		else {
+			return taskLists.get(0).getTaskListName();
+		}
 	}
 	
 	/**
