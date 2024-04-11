@@ -52,8 +52,10 @@ public class NotebookReader {
 		         }
 	         allReader.close();
 	         } catch(Exception e) {
+	        	 notebook.setCurrentTaskList("Active Tasks");
 	        	 return notebook;
 	         }
+	         notebook.setCurrentTaskList("Active Tasks");
 	         return notebook;
          }
 	}
