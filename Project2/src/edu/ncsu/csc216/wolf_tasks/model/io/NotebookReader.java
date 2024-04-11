@@ -38,7 +38,7 @@ public class NotebookReader {
             String header = allReader.next();
             if (!header.startsWith("!")) {
                 allReader.close();
-                throw new IllegalArgumentException("Unable to load file: Invalid header.");
+                throw new IllegalArgumentException("Unable to load file.");
             }
             header = header.substring(1).trim();
             Notebook notebook = new Notebook(header);
