@@ -52,7 +52,7 @@ public class NotebookReader {
 		         }
 	         allReader.close();
 	         } catch(Exception e) {
-	        	 return null;
+	        	 return notebook;
 	         }
 	         return notebook;
          }
