@@ -120,12 +120,8 @@ public class Task implements Cloneable {
 		if(taskLists == null || taskLists.size() == 0) {
 			return "";
 		}
-		if(active) {
-			return "Active Tasks";
-		}
-		else {
-			return taskLists.get(0).getTaskListName();
-		}
+		return taskLists.get(0).getTaskListName();
+		
 	}
 	
 	/**
@@ -154,9 +150,8 @@ public class Task implements Cloneable {
 	 */
 	public void completeTask() {
 		
-		while(taskLists.size() != 0) {
+		for(int i = 0; i < taskLists.size(); i++) {
 			taskLists.get(0).completeTask(this);
-			taskLists.remove(0);
 		}
 		if(recurring) {
 			for(int i = 0; i < taskLists.size(); i++) {
