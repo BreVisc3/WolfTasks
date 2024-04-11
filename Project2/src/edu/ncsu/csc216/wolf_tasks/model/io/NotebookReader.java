@@ -46,12 +46,14 @@ public class NotebookReader {
          else {
 	         header = header.substring(1).trim();
 	         Notebook notebook = new Notebook(header);
-	         
-	         while (allReader.hasNextLine()) {
-	             notebook.addTaskList(processTaskList(allReader.next()));
-	         }
+	         try {
+		         while (allReader.hasNextLine()) {
+		             notebook.addTaskList(processTaskList(allReader.next()));
+		         }
 	         allReader.close();
-	         
+	         } catch(Exception e) {
+	        	 return null;
+	         }
 	         return notebook;
          }
 	}
